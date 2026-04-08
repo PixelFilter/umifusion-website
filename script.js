@@ -139,6 +139,38 @@ const createYouTubeEmbedCard = ({ label, url, context, compact = false }) => {
   return card;
 };
 
+const createBandcampEmbedCard = ({ label, url, embedUrl, context }) => {
+  if (!embedUrl) {
+    return null;
+  }
+
+  try {
+    const parsedEmbed = new URL(embedUrl);
+    if (!/bandcamp\.com$/i.test(parsedEmbed.hostname)) {
+      return null;
+    }
+  } catch {
+    return null;
+  }
+
+  const card = document.createElement("section");
+  card.className = "bandcamp-embed-card";
+  card.innerHTML = `
+    <div class="bandcamp-embed-meta">
+      <strong>${label}</strong>
+      <span>${context}</span>
+    </div>
+    <div class="bandcamp-frame-wrap">
+      <iframe
+        src="${embedUrl}"
+        loading="lazy"
+        seamless
+        title="${context} - ${label} Bandcamp embed"
+      ></iframe>
+    </div>
+  `;
+  return card;
+};
 const buildEmbedCards = (entries, context, forceCompact = false, forceShort = false) => {
   const compact = forceCompact || entries.length > 1;
 
@@ -168,6 +200,15 @@ const buildEmbedCards = (entries, context, forceCompact = false, forceShort = fa
         element: createCustomVideoEmbedCard({
           label: entry.label,
           url: entry.url,
+          context,
+        }),
+      },
+      {
+        url: entry.url,
+        element: createBandcampEmbedCard({
+          label: entry.label,
+          url: entry.url,
+          embedUrl: entry.embedUrl,
           context,
         }),
       },
@@ -210,16 +251,6 @@ const getSocialIcon = (service) => {
         <rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5"></rect>
         <circle cx="12" cy="12" r="4.25"></circle>
         <circle cx="17.4" cy="6.6" r="1.1" class="icon-fill"></circle>
-      </svg>
-    `,
-    tiktok: `
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M14.2 3.5v10.1a3.7 3.7 0 1 1-2.7-3.55V7.9a6.3 6.3 0 1 0 5.3 6.2V9.2a6.85 6.85 0 0 0 3.7 1.1V7.6c-2.5 0-4.55-1.9-4.8-4.1Z"></path>
-      </svg>
-    `,
-    twitter: `
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M18.9 4H22l-6.77 7.74L23 20h-6.1l-4.77-5.65L7.18 20H4.05l7.24-8.28L4 4h6.25l4.31 5.12Z"></path>
       </svg>
     `,
     imdb: `
@@ -653,7 +684,6 @@ const renderContact = (data) => {
     card.innerHTML = `
       <span class="social-card-icon">${getSocialIcon(profile.service)}</span>
       <span class="social-card-label">${profile.label}</span>
-      <strong>View profile</strong>
     `;
     socialGrid.appendChild(card);
   });
@@ -706,6 +736,11 @@ fetch(dataUrl)
   })
   .then(renderPage)
   .catch(renderError);
+
+
+
+
+
 
 
 

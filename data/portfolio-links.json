@@ -232,6 +232,24 @@
                                                       ]
                                 },
                                 {
+                                    "category":  "Music",
+                                    "items":  [
+                                                  {
+                                                      "title":  "The Afterlife is an Ocean",
+                                                      "year":  2023,
+                                                      "role":  "Natirian Mother (voice)",
+                                                      "links":  [
+                                                                    {
+                                                                        "label":  "Album",
+                                                                        "url":  "https://p3te04.bandcamp.com/album/the-afterlife-is-an-ocean",
+                                                                        "embedUrl":  "https://bandcamp.com/EmbeddedPlayer/album=3979515590/size=large/bgcol=ffffff/linkcol=f171a2/tracklist=false/artwork=small/track=2289869543/transparent=true/"
+                                                                    }
+                                                                ],
+                                                      "description":  "A music album project by p3te04 featuring Umi Fusion as Natirian Mother (voice)."
+                                                  }
+                                              ]
+                                },
+                                {
                                     "category":  "Games / Mobile Experiences",
                                     "items":  [
                                                   {
@@ -383,12 +401,6 @@
                                                                   "Cinderella (2005) - Ensemble",
                                                                   "Tom Sawyer (2004) - Aunt Polly",
                                                                   "A Knight To Remember (2003) - Ensemble"
-                                                              ]
-                                                },
-                                                {
-                                                    "category":  "Music Videos",
-                                                    "items":  [
-                                                                  "A Life is a River by p3te04 (2023) - Natirian Mother (voice)"
                                                               ]
                                                 },
                                                 {

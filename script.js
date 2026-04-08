@@ -12,6 +12,114 @@ const prettyLabel = (key) =>
     .replace(/([A-Z])/g, " $1")
     .replace(/^./, (letter) => letter.toUpperCase());
 
+const getDisplayHost = (url) => {
+  try {
+    return new URL(url).hostname.replace(/^(www\.|m\.)/i, "");
+  } catch {
+    return url;
+  }
+};
+
+const copyText = async (value) => {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(value);
+    return;
+  }
+
+  const input = document.createElement("textarea");
+  input.value = value;
+  input.setAttribute("readonly", "");
+  input.style.position = "absolute";
+  input.style.left = "-9999px";
+  document.body.appendChild(input);
+  input.select();
+  document.execCommand("copy");
+  document.body.removeChild(input);
+};
+
+const getActionIcon = (type) => {
+  const icons = {
+    external: `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M14 5h5v5"></path>
+        <path d="M10 14 19 5"></path>
+        <path d="M19 13v4.25A1.75 1.75 0 0 1 17.25 19H6.75A1.75 1.75 0 0 1 5 17.25V6.75A1.75 1.75 0 0 1 6.75 5H11"></path>
+      </svg>
+    `,
+    copy: `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="9" y="9" width="10" height="10" rx="2"></rect>
+        <path d="M7 15H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v1"></path>
+      </svg>
+    `,
+  };
+
+  return icons[type];
+};
+
+const createProfileCard = ({ label, detail, href, service = "url", action = "external" }) => {
+  const card = document.createElement("article");
+  card.className = "social-card";
+
+  const main = document.createElement(href ? "a" : "div");
+  main.className = "social-card-main";
+
+  if (href) {
+    main.href = href;
+    if (!href.startsWith("mailto:")) {
+      main.target = "_blank";
+      main.rel = "noreferrer";
+    }
+  }
+
+  main.innerHTML = `
+    <span class="social-card-icon">${getSocialIcon(service)}</span>
+    <span class="social-card-copy">
+      <strong>${label}</strong>
+      <span class="social-card-detail">${detail}</span>
+    </span>
+  `;
+
+  card.appendChild(main);
+
+  if (action === "copy") {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "social-card-action";
+    button.setAttribute("aria-label", `Copy ${label}`);
+    button.title = `Copy ${label}`;
+    button.innerHTML = getActionIcon("copy");
+    button.addEventListener("click", async () => {
+      try {
+        await copyText(detail);
+        card.classList.add("is-copied");
+        button.setAttribute("aria-label", `${label} copied`);
+        button.title = `${label} copied`;
+        window.setTimeout(() => {
+          card.classList.remove("is-copied");
+          button.setAttribute("aria-label", `Copy ${label}`);
+          button.title = `Copy ${label}`;
+        }, 1400);
+      } catch {
+        button.setAttribute("aria-label", `Unable to copy ${label}`);
+      }
+    });
+    card.appendChild(button);
+  } else if (href && !href.startsWith("mailto:")) {
+    const actionLink = document.createElement("a");
+    actionLink.href = href;
+    actionLink.target = "_blank";
+    actionLink.rel = "noreferrer";
+    actionLink.className = "social-card-action";
+    actionLink.setAttribute("aria-label", `Open ${label}`);
+    actionLink.title = `Open ${label}`;
+    actionLink.innerHTML = getActionIcon("external");
+    card.appendChild(actionLink);
+  }
+
+  return card;
+};
+
 const makeLink = (label, url, className = "project-link") => {
   const anchor = document.createElement("a");
   anchor.href = url;
@@ -250,23 +358,35 @@ const getSocialIcon = (service) => {
   const key = service.toLowerCase();
 
   const icons = {
+    email: `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3.5" y="5.5" width="17" height="13" rx="3"></rect>
+        <path d="M5.5 8l6.5 5 6.5-5"></path>
+      </svg>
+    `,
     instagram: `
       <svg viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5"></rect>
-        <circle cx="12" cy="12" r="4.25"></circle>
-        <circle cx="17.4" cy="6.6" r="1.1" class="icon-fill"></circle>
+        <rect x="4" y="4" width="16" height="16" rx="5"></rect>
+        <circle cx="12" cy="12" r="3.75"></circle>
+        <circle cx="17" cy="7" r="1"></circle>
       </svg>
     `,
     imdb: `
       <svg viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="2.5" y="5.5" width="19" height="13" rx="2.5"></rect>
-        <path class="icon-fill" d="M6.2 9.1h1.6v5.8H6.2zm2.6 0h1.9l.8 3.5.8-3.5h1.9v5.8H13v-3.9l-1 3.9h-1.1l-1-3.9v3.9H8.8zm6.3 0h1.7c1.4 0 2.5.5 2.5 2.9 0 2.3-1 2.9-2.5 2.9h-1.7zm1.6 1.3v3.2h.2c.7 0 1-.3 1-1.6s-.3-1.6-1-1.6z"></path>
+        <rect x="3.5" y="5.5" width="17" height="13" rx="3"></rect>
+        <path d="M7 8.5v7"></path>
+        <path d="M10 8.5v7"></path>
+        <path d="M10 12h3.5"></path>
+        <path d="M13.5 8.5v7"></path>
+        <path d="M16.5 15.5v-7H18a2 2 0 0 1 0 4h-1.5"></path>
       </svg>
     `,
     url: `
       <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M10.6 13.4a1 1 0 0 1 0-1.4l3-3a3.25 3.25 0 1 1 4.6 4.6l-2.1 2.1a3.25 3.25 0 0 1-4.6 0 1 1 0 1 1 1.4-1.4 1.25 1.25 0 0 0 1.8 0l2.1-2.1a1.25 1.25 0 0 0-1.8-1.8l-3 3a1 1 0 0 1-1.4 0Z"></path>
-        <path d="M13.4 10.6a1 1 0 0 1 0 1.4l-3 3a3.25 3.25 0 1 1-4.6-4.6l2.1-2.1a3.25 3.25 0 0 1 4.6 0 1 1 0 1 1-1.4 1.4 1.25 1.25 0 0 0-1.8 0l-2.1 2.1a1.25 1.25 0 0 0 1.8 1.8l3-3a1 1 0 0 1 1.4 0Z"></path>
+        <circle cx="12" cy="12" r="7.5"></circle>
+        <path d="M4.5 12h15"></path>
+        <path d="M12 4.5a12 12 0 0 1 0 15"></path>
+        <path d="M12 4.5a12 12 0 0 0 0 15"></path>
       </svg>
     `,
   };
@@ -434,9 +554,17 @@ const renderMetrics = (data) => {
     0
   );
 
+  const imdbProfileUrl =
+    data.socialProfiles.find((profile) => profile.service?.toLowerCase() === "imdb")?.url ?? null;
+
   const metrics = [
-    { label: "Project credits", value: "22+" },
-    { label: "IMDb credits", value: "8" },
+    { label: "Project credits", value: "22+", href: "#credits" },
+    {
+      label: "IMDb credits",
+      value: "8",
+      href: imdbProfileUrl,
+      external: Boolean(imdbProfileUrl),
+    },
     { label: "Experience", value: "5+ years" },
   ];
 
@@ -444,10 +572,25 @@ const renderMetrics = (data) => {
   metrics.forEach((metric, index) => {
     const item = document.createElement("li");
     item.className = `fade-in delay-${index + 1}`;
-    item.innerHTML = `
+
+    const content = document.createElement(metric.href ? "a" : "div");
+    content.className = `metric-card${metric.href ? " metric-card-link" : ""}`;
+    if (metric.href) {
+      content.href = metric.href;
+      content.setAttribute("aria-label", `Jump to ${metric.label}`);
+      if (metric.external) {
+        content.target = "_blank";
+        content.rel = "noreferrer";
+        content.setAttribute("aria-label", `Open ${metric.label}`);
+      }
+    }
+
+    content.innerHTML = `
       <span class="metric-label">${metric.label}</span>
       <span class="metric-value">${metric.value}</span>
     `;
+
+    item.appendChild(content);
     metricsList.appendChild(item);
   });
 };
@@ -458,10 +601,19 @@ const renderHeroCards = (data) => {
     <p class="card-value">${data.contact.location}<br />Available for remote sessions</p>
   `;
 
-  document.getElementById("studio-card").innerHTML = `
+  const studioCard = document.getElementById("studio-card");
+  studioCard.innerHTML = "";
+
+  const emailLink = document.createElement("a");
+  emailLink.href = `mailto:${data.contact.email}`;
+  emailLink.className = "hero-card-link";
+  emailLink.setAttribute("aria-label", `Email ${data.contact.email}`);
+  emailLink.innerHTML = `
     <p class="card-label">Email</p>
     <p class="card-value">${data.contact.email}</p>
   `;
+
+  studioCard.appendChild(emailLink);
 };
 
 const renderDemos = (data) => {
@@ -513,6 +665,8 @@ const renderCredits = (data) => {
 
     const itemsWrap = document.createElement("div");
     itemsWrap.className = "credit-items";
+
+    const isUpcomingCategory = category.category === "Upcoming Projects";
 
     category.items?.forEach((item) => {
       const clone = template.content.firstElementChild.cloneNode(true);
@@ -566,7 +720,7 @@ const renderCredits = (data) => {
         }
       } else {
         meta.textContent =
-          item.role && item.description
+          isUpcomingCategory && item.role && item.description
             ? `${buildPerformanceContext(item.role)} | ${item.description}`
             : item.description ?? item.role;
         if (item.links?.length) {
@@ -761,49 +915,62 @@ const renderAdditionalExperience = (data) => {
 };
 
 const renderContact = (data) => {
-  const contactList = document.getElementById("contact-list");
-  const contactItems = [
+  const contactGroups = document.getElementById("contact-groups");
+
+  const createGroup = (title, className) => {
+    const section = document.createElement("section");
+    section.className = `contact-group ${className}`.trim();
+
+    const heading = document.createElement("h4");
+    heading.className = "contact-group-title";
+    heading.textContent = title;
+    section.appendChild(heading);
+
+    const grid = document.createElement("div");
+    grid.className = "contact-group-grid";
+    section.appendChild(grid);
+
+    return { section, grid };
+  };
+
+  const bookingsGroup = createGroup("Bookings and inquiries", "contact-group-bookings");
+  const profilesGroup = createGroup("Professional profiles", "contact-group-profiles");
+
+  [
     {
-      label: "Bookings & inquiries",
-      value: data.contact.email,
+      label: "Email",
+      detail: data.contact.email,
       href: `mailto:${data.contact.email}`,
+      service: "email",
+      action: "copy",
     },
-  ];
+    ...data.socialProfiles
+      .filter((profile) => profile.service?.toLowerCase() === "instagram")
+      .map((profile) => ({
+        label: profile.label,
+        detail: getDisplayHost(profile.url),
+        href: profile.url,
+        service: profile.service,
+        action: "external",
+      })),
+  ].forEach((item) => bookingsGroup.grid.appendChild(createProfileCard(item)));
 
-  contactItems.forEach((item) => {
-    const row = document.createElement("div");
-    row.className = "contact-item";
-    row.innerHTML = `<div class="contact-label">${item.label}</div>`;
+  data.socialProfiles
+    .filter((profile) => profile.service?.toLowerCase() !== "instagram")
+    .forEach((profile) => {
+      profilesGroup.grid.appendChild(
+        createProfileCard({
+          label: profile.label,
+          detail: getDisplayHost(profile.url),
+          href: profile.url,
+          service: profile.service,
+          action: "external",
+        })
+      );
+    });
 
-    if (item.href) {
-      const link = document.createElement("a");
-      link.href = item.href;
-      link.textContent = item.value;
-      row.appendChild(link);
-    } else {
-      const value = document.createElement("div");
-      value.textContent = item.value;
-      value.style.fontWeight = "700";
-      value.style.color = "var(--surface-ink)";
-      row.appendChild(value);
-    }
-
-    contactList.appendChild(row);
-  });
-
-  const socialGrid = document.getElementById("social-grid");
-  data.socialProfiles.forEach((profile) => {
-    const card = document.createElement("a");
-    card.href = profile.url;
-    card.target = "_blank";
-    card.rel = "noreferrer";
-    card.className = "social-card";
-    card.innerHTML = `
-      <span class="social-card-icon">${getSocialIcon(profile.service)}</span>
-      <span class="social-card-label">${profile.label}</span>
-    `;
-    socialGrid.appendChild(card);
-  });
+  contactGroups.appendChild(bookingsGroup.section);
+  contactGroups.appendChild(profilesGroup.section);
 };
 
 const injectSchema = (data) => {

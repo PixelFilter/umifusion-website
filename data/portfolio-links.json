@@ -1,12 +1,4 @@
 {
-    "source":  {
-                   "url":  "https://www.umifusion.com/",
-                   "scrapedAt":  "2026-04-07",
-                   "notes":  [
-                                 "Extracted from the live homepage projects section.",
-                                 "This file focuses on portfolio project links and also records visible project entries that did not have direct hyperlinks on the page."
-                             ]
-               },
     "socialProfiles":  [
                            {
                                "label":  "Casting Call Club",
@@ -86,11 +78,12 @@
                                                                     {
                                                                         "label":  "EP 15",
                                                                         "url":  "https://open.spotify.com/episode/4B7bmtNqwpaYPNlFDRPcqM"
+                                                                    },
+                                                                    {
+                                                                        "label":  "EP 17",
+                                                                        "url":  "https://open.spotify.com/episode/3dwnyWob2QTqpksuWWB8NG?si=nEVFvlC4THqgtC9CwtGyBw"
                                                                     }
-                                                                ],
-                                                      "unlinkedMentions":  [
-                                                                               "EP 17"
-                                                                           ]
+                                                                ]
                                                   },
                                                   {
                                                       "title":  "Eastmouth",
@@ -437,3 +430,6 @@
                     "location":  "Seattle, WA area"
                 }
 }
+
+
+

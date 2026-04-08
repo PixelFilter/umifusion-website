@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Umi Fusion | Voice Actor Portfolio</title>
+    <meta
+      name="description"
+      content="Voice actor portfolio for Umi Fusion featuring demos, credits, training, studio specs, and contact information."
+    />
+    <meta
+      name="theme-color"
+      content="#14213d"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta property="og:title" content="Umi Fusion | Voice Actor Portfolio" />
+    <meta
+      property="og:description"
+      content="Listen to character and commercial demos, browse performance credits, and get in touch with Umi Fusion."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/images/umi-fusion-headshot.jpg" />
+    <link rel="preload" as="image" href="assets/images/umi-fusion-headshot.jpg" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="brand-mark" aria-hidden="true">UF</div>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#demos">Demos</a>
+        <a href="#credits">Credits</a>
+        <a href="#about">Background</a>
+        <a href="#studio">Studio</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero section">
+        <div class="hero-copy">
+          <p class="eyebrow">Seattle-based voice actor</p>
+          <h1>Umi Fusion</h1>
+          <p class="hero-lead" id="hero-summary">
+            Character-driven performances for audio dramas, games, animation,
+            commercial work, and fan projects.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#demos">Listen to demos</a>
+            <a class="button button-secondary" href="#contact">Book Umi</a>
+          </div>
+          <ul class="hero-metrics" id="hero-metrics" aria-label="Portfolio highlights"></ul>
+        </div>
+
+        <div class="hero-visual">
+          <div class="portrait-frame">
+            <img
+              src="assets/images/umi-fusion-headshot.jpg"
+              alt="Headshot of voice actor Umi Fusion"
+              width="1080"
+              height="2316"
+            />
+          </div>
+          <div class="hero-card hero-card-top" id="location-card"></div>
+          <div class="hero-card hero-card-bottom" id="studio-card"></div>
+        </div>
+      </section>
+
+      <noscript>
+        <section class="section">
+          <div class="panel">
+            <h2>JavaScript required for full portfolio rendering</h2>
+            <p>
+              This site builds its credit list from the provided JSON dataset.
+              Enable JavaScript and serve the folder from a web server for the
+              complete experience.
+            </p>
+          </div>
+        </section>
+      </noscript>
+
+      <section class="section" id="demos">
+        <div class="section-heading">
+          <p class="eyebrow">Featured audio</p>
+          <h2>Voice demos and reels</h2>
+        </div>
+        <div class="demo-grid" id="demo-grid"></div>
+      </section>
+
+      <section class="section" id="credits">
+        <div class="section-heading">
+          <p class="eyebrow">Selected work</p>
+          <h2>Credits across genres and formats</h2>
+        </div>
+        <div class="credits-layout">
+          <aside class="credits-sidebar" aria-label="Portfolio categories">
+            <div class="credits-sidebar-inner">
+              <p class="sidebar-label">Categories</p>
+              <div class="category-pills" id="category-pills"></div>
+            </div>
+          </aside>
+          <div class="credits-list" id="credits-list"></div>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="section-heading">
+          <p class="eyebrow">Training and background</p>
+          <h2>Performance foundation</h2>
+        </div>
+        <div class="background-grid">
+          <div class="panel">
+            <h3>Training</h3>
+            <ul class="stack-list" id="training-list"></ul>
+          </div>
+          <div class="panel">
+            <h3>Education</h3>
+            <ul class="stack-list" id="education-list"></ul>
+          </div>
+          <div class="panel panel-wide">
+            <h3>Additional experience</h3>
+            <div id="additional-experience"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="studio">
+        <div class="section-heading">
+          <p class="eyebrow">Remote-ready</p>
+          <h2>Studio, tools, and workflow</h2>
+        </div>
+        <div class="studio-grid">
+          <div class="panel">
+            <h3>Recording setup</h3>
+            <dl class="spec-list" id="equipment-list"></dl>
+          </div>
+          <div class="panel">
+            <h3>Where Umi works best</h3>
+            <ul class="tag-list" id="fit-list">
+              <li>Audio drama and narrative podcasts</li>
+              <li>Character-focused indie games</li>
+              <li>Commercial reads with warmth and clarity</li>
+              <li>ADR, trailers, and fandom collaborations</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contact">
+        <div class="section-heading">
+          <p class="eyebrow">Bookings and links</p>
+          <h2>Contact and profiles</h2>
+        </div>
+        <div class="contact-grid contact-grid-single">
+          <div class="panel">
+            <h3>Connect with Umi Fusion</h3>
+            <div class="contact-merged">
+              <div class="contact-list" id="contact-list"></div>
+              <div class="social-grid" id="social-grid"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <template id="credit-item-template">
+      <article class="credit-item">
+        <div class="credit-item-header">
+          <div>
+            <h4></h4>
+            <p class="credit-meta"></p>
+          </div>
+          <span class="credit-year"></span>
+        </div>
+        <div class="credit-links"></div>
+        <div class="credit-notes"></div>
+      </article>
+    </template>
+
+    <script type="application/ld+json" id="person-schema"></script>
+    <script src="script.js" defer></script>
+  </body>
+</html>

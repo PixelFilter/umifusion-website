@@ -29,13 +29,48 @@
 
     <header class="site-header">
       <div class="brand-mark" aria-hidden="true">UF</div>
-      <nav class="site-nav" aria-label="Primary">
+      <button
+        class="mobile-category-trigger"
+        id="mobile-category-trigger"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-category-menu"
+        aria-label="Browse project categories"
+        hidden
+      >
+        <span class="mobile-category-trigger-value" id="mobile-category-current">Categories</span>
+        <span class="mobile-category-trigger-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M6 9.5 12 15l6-5.5"></path>
+          </svg>
+        </span>
+      </button>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        aria-label="Open menu"
+      >
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
         <a href="#demos">Demos</a>
         <a href="#credits">Credits</a>
         <a href="#about">Background</a>
         <a href="#studio">Studio</a>
         <a href="#contact">Contact</a>
       </nav>
+      <div
+        class="mobile-category-menu"
+        id="mobile-category-menu"
+        aria-label="Project categories"
+        hidden
+      >
+        <div class="mobile-category-menu-list" id="mobile-category-menu-list"></div>
+      </div>
     </header>
 
     <main id="main">

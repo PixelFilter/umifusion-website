@@ -12,6 +12,236 @@ const prettyLabel = (key) =>
     .replace(/([A-Z])/g, " $1")
     .replace(/^./, (letter) => letter.toUpperCase());
 
+const getMobileCategoryLabel = (label) => label;
+
+const mobileNavBreakpoint = window.matchMedia("(max-width: 720px)");
+const responsiveHeroBreakpoint = window.matchMedia("(max-width: 980px)");
+
+const initPrimaryNav = () => {
+  const nav = document.getElementById("site-nav");
+  const toggle = document.querySelector(".nav-toggle");
+
+  if (!nav || !toggle) {
+    return;
+  }
+
+  const setExpanded = (expanded) => {
+    toggle.setAttribute("aria-expanded", String(expanded));
+    toggle.setAttribute("aria-label", expanded ? "Close menu" : "Open menu");
+    nav.classList.toggle("is-open", expanded);
+  };
+
+  setExpanded(false);
+
+  toggle.addEventListener("click", () => {
+    const expanded = toggle.getAttribute("aria-expanded") === "true";
+    setExpanded(!expanded);
+  });
+
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (mobileNavBreakpoint.matches) {
+        setExpanded(false);
+      }
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      setExpanded(false);
+    }
+  });
+
+  mobileNavBreakpoint.addEventListener("change", (event) => {
+    if (!event.matches) {
+      setExpanded(false);
+    }
+  });
+};
+
+const initResponsiveHeroMetrics = () => {
+  const hero = document.querySelector(".hero");
+  const heroCopy = document.querySelector(".hero-copy");
+  const heroVisual = document.querySelector(".hero-visual");
+  const metrics = document.getElementById("hero-metrics");
+
+  if (!hero || !heroCopy || !heroVisual || !metrics) {
+    return;
+  }
+
+  const placeMetrics = () => {
+    if (responsiveHeroBreakpoint.matches) {
+      if (metrics.parentElement !== hero || metrics.previousElementSibling !== heroVisual) {
+        hero.insertBefore(metrics, heroVisual.nextSibling);
+      }
+      return;
+    }
+
+    if (metrics.parentElement !== heroCopy) {
+      heroCopy.appendChild(metrics);
+    }
+  };
+
+  placeMetrics();
+  responsiveHeroBreakpoint.addEventListener("change", placeMetrics);
+};
+
+const initMobileCategoryMenu = () => {
+  const trigger = document.getElementById("mobile-category-trigger");
+  const current = document.getElementById("mobile-category-current");
+  const menu = document.getElementById("mobile-category-menu");
+  const creditsSection = document.getElementById("credits");
+  const categoryLinks = Array.from(document.querySelectorAll(".category-pills a"));
+  const menuLinks = Array.from(document.querySelectorAll(".mobile-category-menu-list a"));
+  const nav = document.getElementById("site-nav");
+
+  if (!trigger || !current || !menu || !creditsSection || !categoryLinks.length || !menuLinks.length) {
+    return;
+  }
+
+  const allLinks = [...categoryLinks, ...menuLinks];
+  const sections = categoryLinks
+    .map((link) => {
+      const section = document.getElementById(link.dataset.categoryTarget ?? "");
+      return section ? { link, section } : null;
+    })
+    .filter(Boolean);
+
+  if (!sections.length) {
+    return;
+  }
+
+  let isMenuOpen = false;
+  let activeId = sections[0].section.id;
+  let rafId = 0;
+
+  const setMenuOpen = (open) => {
+    isMenuOpen = open;
+    trigger.setAttribute("aria-expanded", String(open));
+    menu.hidden = !open;
+    menu.classList.toggle("is-open", open);
+  };
+
+  const setTriggerVisible = (visible) => {
+    trigger.hidden = !visible;
+    trigger.classList.toggle("is-visible", visible);
+    if (!visible) {
+      setMenuOpen(false);
+    }
+  };
+
+  const setActiveCategory = (id) => {
+    const activeLink = allLinks.find((link) => link.dataset.categoryTarget === id);
+    if (!activeLink) {
+      return;
+    }
+
+    activeId = id;
+    current.textContent = activeLink.dataset.mobileLabel ?? activeLink.textContent;
+
+    allLinks.forEach((link) => {
+      const isActive = link.dataset.categoryTarget === id;
+      link.classList.toggle("is-active", isActive);
+      if (isActive) {
+        link.setAttribute("aria-current", "true");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  };
+
+  const syncState = () => {
+    rafId = 0;
+
+    const onMobile = mobileNavBreakpoint.matches;
+    const creditsBounds = creditsSection.getBoundingClientRect();
+    const showTrigger =
+      onMobile && creditsBounds.top <= 96 && creditsBounds.bottom >= 180;
+
+    setTriggerVisible(showTrigger);
+
+    if (!showTrigger) {
+      return;
+    }
+
+    if (nav?.classList.contains("is-open")) {
+      setMenuOpen(false);
+    }
+
+    const offset = 124;
+    let nextActiveId = activeId;
+
+    sections.forEach(({ section }, index) => {
+      const rect = section.getBoundingClientRect();
+      const nextSectionRect = sections[index + 1]?.section.getBoundingClientRect();
+
+      if (rect.top - offset <= 0) {
+        nextActiveId = section.id;
+      }
+
+      if (rect.top - offset > 0 && index === 0) {
+        nextActiveId = section.id;
+      }
+
+      if (nextSectionRect && nextSectionRect.top - offset <= 0) {
+        nextActiveId = sections[index + 1].section.id;
+      }
+    });
+
+    setActiveCategory(nextActiveId);
+  };
+
+  const requestSync = () => {
+    if (rafId) {
+      return;
+    }
+
+    rafId = window.requestAnimationFrame(syncState);
+  };
+
+  trigger.addEventListener("click", () => {
+    if (trigger.hidden) {
+      return;
+    }
+
+    setMenuOpen(!isMenuOpen);
+  });
+
+  allLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      const targetId = link.dataset.categoryTarget;
+      if (targetId) {
+        setActiveCategory(targetId);
+      }
+      setMenuOpen(false);
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    if (
+      isMenuOpen &&
+      !menu.contains(event.target) &&
+      !trigger.contains(event.target)
+    ) {
+      setMenuOpen(false);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      setMenuOpen(false);
+    }
+  });
+
+  window.addEventListener("scroll", requestSync, { passive: true });
+  window.addEventListener("resize", requestSync);
+  mobileNavBreakpoint.addEventListener("change", requestSync);
+
+  setMenuOpen(false);
+  setActiveCategory(activeId);
+  syncState();
+};
+
 const getDisplayHost = (url) => {
   try {
     return new URL(url).hostname.replace(/^(www\.|m\.)/i, "");
@@ -639,15 +869,28 @@ const renderDemos = (data) => {
 const renderCredits = (data) => {
   const list = document.getElementById("credits-list");
   const pills = document.getElementById("category-pills");
+  const mobileMenuList = document.getElementById("mobile-category-menu-list");
   const template = document.getElementById("credit-item-template");
 
   data.portfolioCategories.forEach((category) => {
     const slug = slugify(category.category);
+    const mobileLabel = getMobileCategoryLabel(category.category);
 
     const pill = document.createElement("a");
     pill.href = `#${slug}`;
     pill.textContent = category.category;
+    pill.dataset.categoryTarget = slug;
+    pill.dataset.mobileLabel = mobileLabel;
     pills.appendChild(pill);
+
+    if (mobileMenuList) {
+      const mobileLink = document.createElement("a");
+      mobileLink.href = `#${slug}`;
+      mobileLink.textContent = mobileLabel;
+      mobileLink.dataset.categoryTarget = slug;
+      mobileLink.dataset.mobileLabel = mobileLabel;
+      mobileMenuList.appendChild(mobileLink);
+    }
 
     const group = document.createElement("section");
     group.className = "credit-group fade-in";
@@ -997,6 +1240,7 @@ const renderPage = (data) => {
   renderHeroCards(data);
   renderDemos(data);
   renderCredits(data);
+  initMobileCategoryMenu();
   renderEquipment(data);
   renderBackgroundCredits("training-list", data.training);
   renderBackgroundCredits("education-list", data.education);
@@ -1009,6 +1253,9 @@ const renderError = () => {
   document.getElementById("hero-summary").textContent =
     "The portfolio data could not be loaded. Serve the site from a web server so the JSON file can be requested normally.";
 };
+
+initPrimaryNav();
+initResponsiveHeroMetrics();
 
 fetch(dataUrl)
   .then((response) => {

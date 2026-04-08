@@ -381,6 +381,62 @@ h3 {
   gap: 0.65rem;
 }
 
+.project-visual-card {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  border-radius: 22px;
+  text-decoration: none;
+  background:
+    radial-gradient(circle at top right, rgba(197, 107, 67, 0.14), transparent 30%),
+    linear-gradient(180deg, #13231b 0%, #0d1712 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 40px rgba(9, 19, 15, 0.22);
+}
+
+.project-visual-media {
+  overflow: hidden;
+  border-radius: 18px;
+  aspect-ratio: 16 / 9;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.project-visual-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-visual-card-square {
+  width: min(100%, 360px);
+}
+
+.project-visual-card-square .project-visual-media {
+  aspect-ratio: 1 / 1;
+}
+
+.project-visual-card-square .project-visual-media img {
+  object-fit: contain;
+}
+
+.project-visual-meta {
+  margin-bottom: 0.8rem;
+  display: grid;
+  gap: 0.35rem;
+  color: rgba(240, 248, 242, 0.82);
+}
+
+.project-visual-meta strong {
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.project-visual-meta span {
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
 .text-link,
 .project-link {
   display: inline-flex;
@@ -400,7 +456,7 @@ h3 {
 
 .media-embed-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 0.9rem;
   margin-top: 1rem;
 }
@@ -460,7 +516,7 @@ h3 {
 }
 
 .spotify-embed-card.is-compact .spotify-frame-wrap iframe {
-  height: 152px;
+  height: 272px;
 }
 
 .youtube-embed-card {
@@ -499,6 +555,48 @@ h3 {
 }
 
 .youtube-frame-wrap iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.facebook-embed-card {
+  margin-bottom: 1rem;
+  padding: 0.9rem;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at top right, rgba(24, 119, 242, 0.16), transparent 30%),
+    linear-gradient(180deg, #111827 0%, #0f172a 100%);
+  border: 1px solid rgba(24, 119, 242, 0.18);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16);
+}
+
+.facebook-embed-meta {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 0.8rem;
+  color: rgba(241, 245, 249, 0.82);
+}
+
+.facebook-embed-meta strong {
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.facebook-embed-meta span:last-child {
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.facebook-frame-wrap {
+  overflow: hidden;
+  border-radius: 18px;
+  aspect-ratio: 16 / 9;
+  background: #0f0f0f;
+}
+
+.facebook-frame-wrap iframe {
   display: block;
   width: 100%;
   height: 100%;

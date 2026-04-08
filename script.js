@@ -65,6 +65,7 @@ const createSpotifyEmbedCard = ({ label, url, context, compact = false }) => {
   const iframe = document.createElement("iframe");
   iframe.src = embedUrl;
   iframe.loading = "lazy";
+  iframe.scrolling = "no";
   iframe.allow =
     "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
   iframe.referrerPolicy = "strict-origin-when-cross-origin";
@@ -138,8 +139,8 @@ const createYouTubeEmbedCard = ({ label, url, context, compact = false }) => {
   return card;
 };
 
-const buildEmbedCards = (entries, context) => {
-  const compact = entries.length > 1;
+const buildEmbedCards = (entries, context, forceCompact = false) => {
+  const compact = forceCompact || entries.length > 1;
 
   return entries
     .flatMap((entry) => [
@@ -161,6 +162,14 @@ const buildEmbedCards = (entries, context) => {
           compact,
         }),
       },
+      {
+        url: entry.url,
+        element: createCustomVideoEmbedCard({
+          label: entry.label,
+          url: entry.url,
+          context,
+        }),
+      },
     ])
     .filter((entry) => entry.element);
 };
@@ -178,6 +187,15 @@ const appendNonEmbeddedLinks = (container, entries, embeddedUrls) => {
 };
 
 const buildPerformanceContext = (roleName) => `Umi Fusion as ${roleName}`;
+
+const getAudioMimeType = (format) => {
+  const normalized = format.toLowerCase();
+  if (normalized === "mp3") {
+    return "audio/mpeg";
+  }
+
+  return `audio/${normalized}`;
+};
 
 const getSocialIcon = (service) => {
   const key = service.toLowerCase();
@@ -215,6 +233,129 @@ const getSocialIcon = (service) => {
   };
 
   return icons[key] ?? icons.url;
+};
+
+const projectVisuals = {
+  "Tripvia Audio Tours": {
+    image:
+      "https://static.wixstatic.com/media/229b79_89221bcd8b13415dba62715ef36b70d3~mv2.jpg/v1/fill/w_980,h_653,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/229b79_89221bcd8b13415dba62715ef36b70d3~mv2.jpg",
+    eyebrow: "Tripvia Tours",
+  },
+  "Havasu Blues": {
+    image:
+      "https://staticdelivery.nexusmods.com/mods/130/images/76680/76680-1653238289-575718927.jpeg",
+    eyebrow: "Nexus Mods Media",
+  },
+  "Big Misunderstood Wolf: Part 2": {
+    image: "assets/images/projects/big-misunderstood-wolf-part-2.png",
+    eyebrow: "Project Artwork",
+  },
+};
+
+const facebookEmbeds = {
+  "Partners Credit Union Card Design Commercial": {
+    src: "https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FPartnersFCU%2Fvideos%2F1767914383231113%2F&show_text=false&width=560&t=0",
+    title: "Partners Credit Union Card Design Commercial Facebook video",
+  },
+};
+
+const customVideoEmbeds = {
+  "https://starsfandub.com/episodes/184-a-full-house/": {
+    src: "https://odysee.com/$/embed/@Fighter4LuvFandubs:2/Sailor-Stars-Ep184-A-Full-House-fandub:8?r=BW3acLhGaSmGnTNShWkH4Jz9tRo7QEZz",
+    title: "Sailor Moon Missing Episodes Fandub EP 184 video",
+  },
+  "https://starsfandub.com/episodes/187-batter-up-sailor-moon/": {
+    src: "https://odysee.com/$/embed/@Fighter4LuvFandubs:2/Sailor-Stars-Ep187-Batter-Up-Sailor-Moon-uncut:b?r=BW3acLhGaSmGnTNShWkH4Jz9tRo7QEZz",
+    title: "Sailor Moon Missing Episodes Fandub EP 187 video",
+  },
+};
+
+const shouldHideProjectLinksForItem = (item) =>
+  Boolean(facebookEmbeds[item.title] || projectVisuals[item.title]);
+
+const createProjectVisual = (item) => {
+  const visual = projectVisuals[item.title];
+  if (!visual) {
+    return null;
+  }
+
+  const projectUrl = item.links?.[0]?.url;
+  if (!projectUrl) {
+    return null;
+  }
+
+  const card = document.createElement("a");
+  card.className = "project-visual-card";
+  if (
+    item.title === "Big Misunderstood Wolf: Part 2" ||
+    item.title === "Tripvia Audio Tours"
+  ) {
+    card.classList.add("project-visual-card-square");
+  }
+  card.href = projectUrl;
+  card.target = "_blank";
+  card.rel = "noreferrer";
+  card.innerHTML = `
+    <div class="project-visual-meta">
+      <strong>${item.title}</strong>
+      <span>${buildPerformanceContext(item.role)}</span>
+    </div>
+    <div class="project-visual-media">
+      <img src="${visual.image}" alt="${item.title} promotional artwork" loading="lazy" />
+    </div>
+  `;
+  return card;
+};
+
+const createFacebookEmbedCard = (item) => {
+  const embed = facebookEmbeds[item.title];
+  if (!embed) {
+    return null;
+  }
+
+  const card = document.createElement("section");
+  card.className = "facebook-embed-card";
+  card.innerHTML = `
+    <div class="facebook-embed-meta">
+      <strong>Project video</strong>
+      <span>${buildPerformanceContext(item.role)}</span>
+    </div>
+    <div class="facebook-frame-wrap">
+      <iframe
+        src="${embed.src}"
+        loading="lazy"
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+        allowfullscreen
+        title="${embed.title}"
+      ></iframe>
+    </div>
+  `;
+  return card;
+};
+
+const createCustomVideoEmbedCard = ({ label, url, context }) => {
+  const embed = customVideoEmbeds[url];
+  if (!embed) {
+    return null;
+  }
+
+  const card = document.createElement("section");
+  card.className = "youtube-embed-card";
+  card.innerHTML = `
+    <div class="youtube-embed-meta">
+      <strong>${label}</strong>
+      <span>${context}</span>
+    </div>
+    <div class="youtube-frame-wrap">
+      <iframe
+        src="${embed.src}"
+        loading="lazy"
+        allowfullscreen
+        title="${embed.title}"
+      ></iframe>
+    </div>
+  `;
+  return card;
 };
 
 const renderMetrics = (data) => {
@@ -256,8 +397,8 @@ const renderHeroCards = (data) => {
   `;
 
   document.getElementById("studio-card").innerHTML = `
-    <p class="card-label">Studio setup</p>
-    <p class="card-value">${data.equipment.microphone}<br />${data.equipment.interface}</p>
+    <p class="card-label">Email</p>
+    <p class="card-value">${data.contact.email}</p>
   `;
 };
 
@@ -271,8 +412,8 @@ const renderDemos = (data) => {
     const localPath = sample.localPath.replace(/\\/g, "/");
     card.innerHTML = `
       <h3>${sample.title}</h3>
-      <audio controls preload="none">
-        <source src="${localPath}" type="audio/${sample.format}" />
+      <audio controls preload="metadata">
+        <source src="${localPath}" type="${getAudioMimeType(sample.format)}" />
         Your browser does not support the audio element.
       </audio>
     `;
@@ -304,7 +445,6 @@ const renderCredits = (data) => {
       <div class="credit-group-header">
         <div>
           <h3>${category.category}</h3>
-          <p>${totalItems} listed credit${totalItems === 1 ? "" : "s"}</p>
         </div>
       </div>
     `;
@@ -323,35 +463,47 @@ const renderCredits = (data) => {
       title.textContent = item.title;
       year.textContent = item.year;
 
+      const projectVisual = createProjectVisual(item);
+      if (projectVisual) {
+        links.appendChild(projectVisual);
+      }
+
+      const facebookEmbed = createFacebookEmbedCard(item);
+      if (facebookEmbed) {
+        links.appendChild(facebookEmbed);
+      }
+
       if (item.roles?.length) {
-        meta.textContent = `${item.roles.length} credited roles`;
+        meta.textContent = item.roles.map((role) => role.name).join(" / ");
+        const useCompactEmbeds = item.roles.length > 1;
+        const combinedEmbeds = [];
 
         item.roles.forEach((role) => {
-          const block = document.createElement("div");
-          block.className = "mini-note";
-          const roleTitle = document.createElement("p");
-          roleTitle.innerHTML = `<strong>${role.name}</strong>`;
-          block.appendChild(roleTitle);
-
-          const mediaEmbeds = buildEmbedCards(role.links, buildPerformanceContext(role.name));
+          const mediaEmbeds = buildEmbedCards(
+            role.links,
+            buildPerformanceContext(role.name),
+            useCompactEmbeds
+          );
           const embeddedUrls = new Set(mediaEmbeds.map((entry) => entry.url));
-          appendNonEmbeddedLinks(block, role.links, embeddedUrls);
-
-          if (mediaEmbeds.length) {
-            const embedsWrap = document.createElement("div");
-            embedsWrap.className = "media-embed-grid";
-            mediaEmbeds.forEach((embed) => embedsWrap.appendChild(embed.element));
-            block.appendChild(embedsWrap);
-          }
-
-          links.appendChild(block);
+          appendNonEmbeddedLinks(links, role.links, embeddedUrls);
+          combinedEmbeds.push(...mediaEmbeds.map((embed) => embed.element));
         });
+
+        if (combinedEmbeds.length) {
+          const embedsWrap = document.createElement("div");
+          embedsWrap.className = "media-embed-grid";
+          combinedEmbeds.forEach((embed) => embedsWrap.appendChild(embed));
+          links.appendChild(embedsWrap);
+        }
       } else {
         meta.textContent = item.role;
         if (item.links?.length) {
           const mediaEmbeds = buildEmbedCards(item.links, buildPerformanceContext(item.role));
           const embeddedUrls = new Set(mediaEmbeds.map((entry) => entry.url));
-          appendNonEmbeddedLinks(links, item.links, embeddedUrls);
+
+          if (!shouldHideProjectLinksForItem(item)) {
+            appendNonEmbeddedLinks(links, item.links, embeddedUrls);
+          }
 
           if (mediaEmbeds.length) {
             const embedsWrap = document.createElement("div");
@@ -377,26 +529,19 @@ const renderCredits = (data) => {
     });
 
     if (category.unlinkedItems?.length) {
-      const aside = document.createElement("div");
-      aside.className = "credit-item";
-      aside.innerHTML = `
-        <div class="credit-item-header">
-          <div>
-            <h4>Available on request</h4>
-            <p class="credit-meta">Provided in the source data without public links.</p>
-          </div>
-        </div>
-      `;
-
-      const listEl = document.createElement("ul");
-      listEl.className = "credit-note-list";
       category.unlinkedItems.forEach((entry) => {
-        const li = document.createElement("li");
-        li.innerHTML = `<strong>${entry.title}</strong> (${entry.year})<br />${entry.role}<br />${entry.note}`;
-        listEl.appendChild(li);
+        const clone = template.content.firstElementChild.cloneNode(true);
+        const title = clone.querySelector("h4");
+        const meta = clone.querySelector(".credit-meta");
+        const year = clone.querySelector(".credit-year");
+        const links = clone.querySelector(".credit-links");
+
+        title.textContent = entry.title;
+        meta.textContent = `${entry.role} (${entry.note})`;
+        year.textContent = entry.year;
+        links.remove();
+        itemsWrap.appendChild(clone);
       });
-      aside.appendChild(listEl);
-      itemsWrap.appendChild(aside);
     }
 
     group.appendChild(itemsWrap);

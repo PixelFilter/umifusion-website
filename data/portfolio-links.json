@@ -1,0 +1,439 @@
+{
+    "source":  {
+                   "url":  "https://www.umifusion.com/",
+                   "scrapedAt":  "2026-04-07",
+                   "notes":  [
+                                 "Extracted from the live homepage projects section.",
+                                 "This file focuses on portfolio project links and also records visible project entries that did not have direct hyperlinks on the page."
+                             ]
+               },
+    "socialProfiles":  [
+                           {
+                               "label":  "Casting Call Club",
+                               "service":  "url",
+                               "url":  "https://www.castingcall.club/umifusion"
+                           },
+                           {
+                               "label":  "Instagram",
+                               "service":  "instagram",
+                               "url":  "http://instagram.com/umifusion"
+                           },
+                           {
+                               "label":  "TikTok",
+                               "service":  "tiktok",
+                               "url":  "https://www.tiktok.com/@umifusion"
+                           },
+                           {
+                               "label":  "Twitter",
+                               "service":  "twitter",
+                               "url":  "http://twitter.com/umi_fusion"
+                           },
+                           {
+                               "label":  "IMDb",
+                               "service":  "imdb",
+                               "url":  "https://m.imdb.com/name/nm14012542/"
+                           }
+                       ],
+    "portfolioCategories":  [
+                                {
+                                    "category":  "Podcasts / Audio Dramas",
+                                    "items":  [
+                                                  {
+                                                      "title":  "Solarity",
+                                                      "year":  2023,
+                                                      "role":  "Dispatch/Sophia",
+                                                      "links":  [
+                                                                    {
+                                                                        "label":  "EP 1",
+                                                                        "url":  "https://open.spotify.com/episode/63LcRfeAEBcGeTz39VIt8j"
+                                                                    },
+                                                                    {
+                                                                        "label":  "EP 2",
+                                                                        "url":  "https://open.spotify.com/episode/6Jpck0zjD33CnILdcsCCL0"
+                                                                    },
+                                                                    {
+                                                                        "label":  "EP 3",
+                                                                        "url":  "https://open.spotify.com/episode/43ioo7K3eRatGKglIFanOr"
+                                                                    },
+                                                                    {
+                                                                        "label":  "EP 4",
+                                                                        "url":  "https://open.spotify.com/episode/4rMYV7bnDAi6EqU1BJEjmA"
+                                                                    },
+                                                                    {
+                                                                        "label":  "EP 5",
+                                                                        "url":  "https://open.spotify.com/episode/4A3xFfM3DOeZEKsWmRgdac"
+                                                                    },
+                                                                    {
+                                                                        "label":  "EP 7",
+                                                                        "url":  "https://open.spotify.com/episode/4KXBbGYWW0usNX3StogGle"
+                                                                    },
+                                                                    {
+                                                                        "label":  "EP 8",
+                                                                        "url":  "https://open.spotify.com/episode/7tBOo03xwG02DHwrna4F9q"
+                                                                    },
+                                                                    {
+                                                                        "label":  "EP 10",
+                                                                        "url":  "https://open.spotify.com/episode/7CoQMOjLC5yC7wH6Evo6tr"
+                                                                    },
+                                                                    {
+                                                                        "label":  "EP 13",
+                                                                        "url":  "https://open.spotify.com/episode/2QzDYEH2rzbU3x7f8Ovm3O"
+                                                                    },
+                                                                    {
+                                                                        "label":  "EP 14",
+                                                                        "url":  "https://open.spotify.com/episode/3XshKiIoWPIecMULFDnl8v"
+                                                                    },
+                                                                    {
+                                                                        "label":  "EP 15",
+                                                                        "url":  "https://open.spotify.com/episode/4B7bmtNqwpaYPNlFDRPcqM"
+                                                                    }
+                                                                ],
+                                                      "unlinkedMentions":  [
+                                                                               "EP 17"
+                                                                           ]
+                                                  },
+                                                  {
+                                                      "title":  "Eastmouth",
+                                                      "year":  2023,
+                                                      "roles":  [
+                                                                    {
+                                                                        "name":  "Arlene Piatek",
+                                                                        "links":  [
+                                                                                      {
+                                                                                          "label":  "EP 16",
+                                                                                          "url":  "https://open.spotify.com/episode/0CMBZxjCWinVAZL3Ynqxes"
+                                                                                      }
+                                                                                  ]
+                                                                    },
+                                                                    {
+                                                                        "name":  "Janet Piatek",
+                                                                        "links":  [
+                                                                                      {
+                                                                                          "label":  "EP 17",
+                                                                                          "url":  "https://open.spotify.com/episode/04BYZ2r59mZkcbT1ZSdbYE"
+                                                                                      },
+                                                                                      {
+                                                                                          "label":  "EP 18",
+                                                                                          "url":  "https://open.spotify.com/episode/1jdgcu9VWSOxDVGImIiE43"
+                                                                                      },
+                                                                                      {
+                                                                                          "label":  "EP 21",
+                                                                                          "url":  "https://open.spotify.com/episode/1nfKre5dQCykt9Tfg6e1rF"
+                                                                                      }
+                                                                                  ]
+                                                                    }
+                                                                ]
+                                                  },
+                                                  {
+                                                      "title":  "Rad(io) Shorts: Randy, Portrait of a Rattlesnake Wrangler",
+                                                      "year":  2022,
+                                                      "role":  "Ellenor Vorella",
+                                                      "links":  [
+                                                                    {
+                                                                        "label":  "Project",
+                                                                        "url":  "https://open.spotify.com/episode/02oxnemsGt18V0N8SfIZtr"
+                                                                    }
+                                                                ]
+                                                  },
+                                                  {
+                                                      "title":  "That Woman",
+                                                      "year":  2022,
+                                                      "role":  "Olivia Tate",
+                                                      "links":  [
+                                                                    {
+                                                                        "label":  "Project",
+                                                                        "url":  "https://open.spotify.com/episode/0rJseZDq9SbOVLRrMDDAOe"
+                                                                    }
+                                                                ]
+                                                  },
+                                                  {
+                                                      "title":  "The Quentin Sanders Tapes",
+                                                      "year":  2022,
+                                                      "role":  "Dorothy Conroy",
+                                                      "links":  [
+                                                                    {
+                                                                        "label":  "Project",
+                                                                        "url":  "https://www.youtube.com/watch?v=bI0EYgLnVcw"
+                                                                    }
+                                                                ]
+                                                  },
+                                                  {
+                                                      "title":  "Out of Place Podcast",
+                                                      "year":  2022,
+                                                      "role":  "Child",
+                                                      "links":  [
+                                                                    {
+                                                                        "label":  "Project",
+                                                                        "url":  "https://www.buzzsprout.com/835705/10472619-when-couples-argue"
+                                                                    }
+                                                                ]
+                                                  }
+                                              ]
+                                },
+                                {
+                                    "category":  "Short Films",
+                                    "items":  [
+                                                  {
+                                                      "title":  "The Bunker",
+                                                      "year":  2022,
+                                                      "role":  "Chloe (voice)",
+                                                      "links":  [
+                                                                    {
+                                                                        "label":  "Project",
+                                                                        "url":  "https://youtu.be/QZc2mcF8r_0"
+                                                                    }
+                                                                ]
+                                                  },
+                                                  {
+                                                      "title":  "Headstone of Solitude",
+                                                      "year":  2023,
+                                                      "role":  "Amber/Woman (voice)",
+                                                      "links":  [
+                                                                    {
+                                                                        "label":  "Project",
+                                                                        "url":  "https://youtu.be/7Ryf27-lnBo"
+                                                                    }
+                                                                ]
+                                                  }
+                                              ]
+                                },
+                                {
+                                    "category":  "Animations",
+                                    "items":  [
+                                                  {
+                                                      "title":  "CRiTORA: Superstore Sweep",
+                                                      "year":  2022,
+                                                      "role":  "Fion Trufflax",
+                                                      "links":  [
+                                                                    {
+                                                                        "label":  "Project",
+                                                                        "url":  "https://youtu.be/hGj7GVFAD70"
+                                                                    }
+                                                                ]
+                                                  }
+                                              ]
+                                },
+                                {
+                                    "category":  "Commercials",
+                                    "items":  [
+                                                  {
+                                                      "title":  "Partners Credit Union Card Design Commercial",
+                                                      "year":  2016,
+                                                      "role":  "Cashier",
+                                                      "links":  [
+                                                                    {
+                                                                        "label":  "Project",
+                                                                        "url":  "https://www.facebook.com/PartnersFCU/videos/1767914383231113/"
+                                                                    }
+                                                                ]
+                                                  }
+                                              ],
+                                    "unlinkedItems":  [
+                                                          {
+                                                              "title":  "Disney Employee Centers Trailer",
+                                                              "year":  2016,
+                                                              "role":  "Representative",
+                                                              "note":  "Footage available upon request"
+                                                          }
+                                                      ]
+                                },
+                                {
+                                    "category":  "Games / Mobile Experiences",
+                                    "items":  [
+                                                  {
+                                                      "title":  "Tripvia Audio Tours",
+                                                      "year":  2022,
+                                                      "role":  "Mary Schaefer Warren",
+                                                      "links":  [
+                                                                    {
+                                                                        "label":  "Project",
+                                                                        "url":  "https://www.tripvia.tours"
+                                                                    }
+                                                                ]
+                                                  },
+                                                  {
+                                                      "title":  "Big Misunderstood Wolf: Part 2",
+                                                      "year":  2022,
+                                                      "role":  "Pauline / Joan / Gail / Paramedic / Mrs. Adora",
+                                                      "links":  [
+                                                                    {
+                                                                        "label":  "Project",
+                                                                        "url":  "https://hiddenworld.icu"
+                                                                    }
+                                                                ]
+                                                  }
+                                              ]
+                                },
+                                {
+                                    "category":  "Unofficial Fan Projects",
+                                    "items":  [
+                                                  {
+                                                      "title":  "Renewal",
+                                                      "year":  2023,
+                                                      "role":  "Xybara",
+                                                      "links":  [
+                                                                    {
+                                                                        "label":  "EP 4",
+                                                                        "url":  "https://youtu.be/HPCIhtRDl7Y"
+                                                                    },
+                                                                    {
+                                                                        "label":  "EP 5",
+                                                                        "url":  "https://youtu.be/rDN8Msv-iik"
+                                                                    }
+                                                                ]
+                                                  },
+                                                  {
+                                                      "title":  "Benders \u0026 Brews: Bill Door",
+                                                      "year":  2022,
+                                                      "role":  "Margaret Burtney",
+                                                      "links":  [
+                                                                    {
+                                                                        "label":  "Project",
+                                                                        "url":  "https://open.spotify.com/episode/5nt3NStcrMHqCeTn1lro0c?si=3a53d9af09904107"
+                                                                    }
+                                                                ]
+                                                  },
+                                                  {
+                                                      "title":  "Odyssey",
+                                                      "year":  2022,
+                                                      "role":  "Olivia Kirby",
+                                                      "links":  [
+                                                                    {
+                                                                        "label":  "Project",
+                                                                        "url":  "https://www.youtube.com/watch?v=o4tnIIn0u0s"
+                                                                    }
+                                                                ]
+                                                  },
+                                                  {
+                                                      "title":  "Havasu Blues",
+                                                      "year":  2022,
+                                                      "role":  "Rose",
+                                                      "links":  [
+                                                                    {
+                                                                        "label":  "Project",
+                                                                        "url":  "https://www.nexusmods.com/newvegas/mods/76680"
+                                                                    }
+                                                                ]
+                                                  },
+                                                  {
+                                                      "title":  "Moon Knight: Long Nights",
+                                                      "year":  2022,
+                                                      "role":  "Marlene Alraune",
+                                                      "links":  [
+                                                                    {
+                                                                        "label":  "Project",
+                                                                        "url":  "https://youtu.be/Aer7Wm4-4T4"
+                                                                    }
+                                                                ]
+                                                  },
+                                                  {
+                                                      "title":  "Strawberry Panic! Fandub",
+                                                      "year":  2022,
+                                                      "role":  "Shion Toumori",
+                                                      "links":  [
+                                                                    {
+                                                                        "label":  "Project",
+                                                                        "url":  "https://www.youtube.com/playlist?list=PLnZZKz9K8dba29SeHIXjizl3eddcZaUak"
+                                                                    }
+                                                                ]
+                                                  },
+                                                  {
+                                                      "title":  "Sailor Moon Missing Episodes Fandub",
+                                                      "year":  2022,
+                                                      "role":  "Sailor Star Fighter / Justin",
+                                                      "links":  [
+                                                                    {
+                                                                        "label":  "EP 184",
+                                                                        "url":  "https://starsfandub.com/episodes/184-a-full-house/"
+                                                                    },
+                                                                    {
+                                                                        "label":  "EP 187",
+                                                                        "url":  "https://starsfandub.com/episodes/187-batter-up-sailor-moon/"
+                                                                    }
+                                                                ]
+                                                  },
+                                                  {
+                                                      "title":  "Welcome to the Doki Doki Literature Club Fandub",
+                                                      "year":  2022,
+                                                      "role":  "Yumi Sakai",
+                                                      "links":  [
+                                                                    {
+                                                                        "label":  "Project",
+                                                                        "url":  "https://www.youtube.com/watch?v=XoYUkjqrBoY"
+                                                                    }
+                                                                ]
+                                                  }
+                                              ]
+                                }
+                            ],
+    "visibleButUnlinkedPortfolioMentions":  [
+                                                {
+                                                    "category":  "Theater / Live Performances",
+                                                    "items":  [
+                                                                  "Jungle Cruise - Skipper (2012-2013)",
+                                                                  "Twilight Zone Showcase, After Hours (2010) - Marsha",
+                                                                  "Noises Off! (2009) - Dottie Ottley/Mrs. Clackett",
+                                                                  "Check Please! (2009) - Blind Date",
+                                                                  "Miracle Worker (2008) - Mrs. Keller",
+                                                                  "Holes (2007) - Attorney",
+                                                                  "Cinderella (2005) - Ensemble",
+                                                                  "Tom Sawyer (2004) - Aunt Polly",
+                                                                  "A Knight To Remember (2003) - Ensemble"
+                                                              ]
+                                                },
+                                                {
+                                                    "category":  "Music Videos",
+                                                    "items":  [
+                                                                  "A Life is a River by p3te04 (2023) - Natirian Mother (voice)"
+                                                              ]
+                                                },
+                                                {
+                                                    "category":  "Upcoming Projects",
+                                                    "items":  [
+                                                                  "Unexpected Departure by Shannon O\u0027Connor (Audible Audiobook)",
+                                                                  "Deja Vu by Liz Leiby (Audible Audiobook)",
+                                                                  "DetectiveYOU - Mel (Story-based app)",
+                                                                  "The Denault Tapes - Lucie Denault (Audio Drama)",
+                                                                  "Toca Life Stories Continued! - Nar (Fandub)",
+                                                                  "Delicious In Dungeon - Izutsumi (Comic Fandub)"
+                                                              ]
+                                                }
+                                            ],
+    "training":  [
+                     "Voice Acting 201 - Deb Munro, Closing Credits",
+                     "Voice Acting 101 - John Wang, Closing Credits"
+                 ],
+    "education":  [
+                      "Voice \u0026 Diction (2010) - Irvine Valley College",
+                      "Advanced Drama (2009-2010) - Blake Gould, Northwood High School",
+                      "Intermediate Drama (2008-2009) - Blake Gould, Northwood High School",
+                      "Beginning Drama (2007-2008) - Blake Gould, Northwood High School"
+                  ],
+    "equipment":  {
+                      "microphone":  "AT2020 XLR",
+                      "interface":  "Focusrite Scarlett Solo",
+                      "daw":  "Ableton Live / Audacity",
+                      "recordingSpace":  "Insulated studio-dedicated room with acoustic panels"
+                  },
+    "samplesAndReels":  [
+                            {
+                                "title":  "Character Sample",
+                                "type":  "sample",
+                                "format":  "mp3",
+                                "sourceUrl":  "https://static1.squarespace.com/static/5a23f06a692ebe5d2954a45d/t/630223ba65e0e82d57b2ef2d/1661084608724/Umifusion_Character+Sample_August+2022.mp3/original/Umifusion_Character+Sample_August+2022.mp3",
+                                "localPath":  "assets/audio/umi-fusion-character-sample-august-2022.mp3"
+                            },
+                            {
+                                "title":  "Commercial Sample",
+                                "type":  "sample",
+                                "format":  "mp3",
+                                "sourceUrl":  "https://static1.squarespace.com/static/5a23f06a692ebe5d2954a45d/t/62b9ca784de84618d451f3a4/1656343162265/Umi+Fusion+Commercial+Sample.mp3/original/Umi+Fusion+Commercial+Sample.mp3",
+                                "localPath":  "assets/audio/umi-fusion-commercial-sample.mp3"
+                            }
+                        ],
+    "contact":  {
+                    "email":  "umifusionvo@gmail.com",
+                    "discord":  "UmifusionVO #0626",
+                    "location":  "Seattle, WA area"
+                }
+}

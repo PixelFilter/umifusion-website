@@ -1,2 +1,1 @@
-# umifusion-website
-Vibe coded portfolio website for umifusion
+Portfolio website for umfusion.

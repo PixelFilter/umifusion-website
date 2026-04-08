@@ -11,16 +11,6 @@
                                "url":  "http://instagram.com/umifusion"
                            },
                            {
-                               "label":  "TikTok",
-                               "service":  "tiktok",
-                               "url":  "https://www.tiktok.com/@umifusion"
-                           },
-                           {
-                               "label":  "Twitter",
-                               "service":  "twitter",
-                               "url":  "http://twitter.com/umi_fusion"
-                           },
-                           {
                                "label":  "IMDb",
                                "service":  "imdb",
                                "url":  "https://m.imdb.com/name/nm14012542/"
@@ -36,54 +26,55 @@
                                                       "role":  "Dispatch/Sophia",
                                                       "links":  [
                                                                     {
-                                                                        "label":  "EP 1",
+                                                                        "label":  "Episode 1",
                                                                         "url":  "https://open.spotify.com/episode/63LcRfeAEBcGeTz39VIt8j"
                                                                     },
                                                                     {
-                                                                        "label":  "EP 2",
+                                                                        "label":  "Episode 2",
                                                                         "url":  "https://open.spotify.com/episode/6Jpck0zjD33CnILdcsCCL0"
                                                                     },
                                                                     {
-                                                                        "label":  "EP 3",
+                                                                        "label":  "Episode 3",
                                                                         "url":  "https://open.spotify.com/episode/43ioo7K3eRatGKglIFanOr"
                                                                     },
                                                                     {
-                                                                        "label":  "EP 4",
+                                                                        "label":  "Episode 4",
                                                                         "url":  "https://open.spotify.com/episode/4rMYV7bnDAi6EqU1BJEjmA"
                                                                     },
                                                                     {
-                                                                        "label":  "EP 5",
+                                                                        "label":  "Episode 5",
                                                                         "url":  "https://open.spotify.com/episode/4A3xFfM3DOeZEKsWmRgdac"
                                                                     },
                                                                     {
-                                                                        "label":  "EP 7",
+                                                                        "label":  "Episode 7",
                                                                         "url":  "https://open.spotify.com/episode/4KXBbGYWW0usNX3StogGle"
                                                                     },
                                                                     {
-                                                                        "label":  "EP 8",
+                                                                        "label":  "Episode 8",
                                                                         "url":  "https://open.spotify.com/episode/7tBOo03xwG02DHwrna4F9q"
                                                                     },
                                                                     {
-                                                                        "label":  "EP 10",
+                                                                        "label":  "Episode 10",
                                                                         "url":  "https://open.spotify.com/episode/7CoQMOjLC5yC7wH6Evo6tr"
                                                                     },
                                                                     {
-                                                                        "label":  "EP 13",
+                                                                        "label":  "Episode 13",
                                                                         "url":  "https://open.spotify.com/episode/2QzDYEH2rzbU3x7f8Ovm3O"
                                                                     },
                                                                     {
-                                                                        "label":  "EP 14",
+                                                                        "label":  "Episode 14",
                                                                         "url":  "https://open.spotify.com/episode/3XshKiIoWPIecMULFDnl8v"
                                                                     },
                                                                     {
-                                                                        "label":  "EP 15",
+                                                                        "label":  "Episode 15",
                                                                         "url":  "https://open.spotify.com/episode/4B7bmtNqwpaYPNlFDRPcqM"
                                                                     },
                                                                     {
-                                                                        "label":  "EP 17",
+                                                                        "label":  "Episode 17",
                                                                         "url":  "https://open.spotify.com/episode/3dwnyWob2QTqpksuWWB8NG?si=nEVFvlC4THqgtC9CwtGyBw"
                                                                     }
-                                                                ]
+                                                                ],
+                                                      "description":  "A sci-fi audio drama about rebel operatives fighting back against Comet Corp as its actions ripple across the galaxy."
                                                   },
                                                   {
                                                       "title":  "Eastmouth",
@@ -93,7 +84,7 @@
                                                                         "name":  "Arlene Piatek",
                                                                         "links":  [
                                                                                       {
-                                                                                          "label":  "EP 16",
+                                                                                          "label":  "Episode 16",
                                                                                           "url":  "https://open.spotify.com/episode/0CMBZxjCWinVAZL3Ynqxes"
                                                                                       }
                                                                                   ]
@@ -102,20 +93,21 @@
                                                                         "name":  "Janet Piatek",
                                                                         "links":  [
                                                                                       {
-                                                                                          "label":  "EP 17",
+                                                                                          "label":  "Episode 17",
                                                                                           "url":  "https://open.spotify.com/episode/04BYZ2r59mZkcbT1ZSdbYE"
                                                                                       },
                                                                                       {
-                                                                                          "label":  "EP 18",
+                                                                                          "label":  "Episode 18",
                                                                                           "url":  "https://open.spotify.com/episode/1jdgcu9VWSOxDVGImIiE43"
                                                                                       },
                                                                                       {
-                                                                                          "label":  "EP 21",
+                                                                                          "label":  "Episode 21",
                                                                                           "url":  "https://open.spotify.com/episode/1nfKre5dQCykt9Tfg6e1rF"
                                                                                       }
                                                                                   ]
                                                                     }
-                                                                ]
+                                                                ],
+                                                      "description":  "A late-1960s mystery audio drama set in a coastal town where a pirate radio crew uncovers buried secrets."
                                                   },
                                                   {
                                                       "title":  "Rad(io) Shorts: Randy, Portrait of a Rattlesnake Wrangler",
@@ -126,7 +118,8 @@
                                                                         "label":  "Project",
                                                                         "url":  "https://open.spotify.com/episode/02oxnemsGt18V0N8SfIZtr"
                                                                     }
-                                                                ]
+                                                                ],
+                                                      "description":  "A short-form audio drama installment in the Rad(io) Shorts series, centered on the offbeat tale of a rattlesnake wrangler."
                                                   },
                                                   {
                                                       "title":  "That Woman",
@@ -137,7 +130,8 @@
                                                                         "label":  "Project",
                                                                         "url":  "https://open.spotify.com/episode/0rJseZDq9SbOVLRrMDDAOe"
                                                                     }
-                                                                ]
+                                                                ],
+                                                      "description":  "A character-driven scripted audio project focused on Olivia Tate and the tensions surrounding her story."
                                                   },
                                                   {
                                                       "title":  "The Quentin Sanders Tapes",
@@ -148,7 +142,8 @@
                                                                         "label":  "Project",
                                                                         "url":  "https://www.youtube.com/watch?v=bI0EYgLnVcw"
                                                                     }
-                                                                ]
+                                                                ],
+                                                      "description":  "A suspense-driven mystery presented through recorded tapes and fragmented testimony."
                                                   },
                                                   {
                                                       "title":  "Out of Place Podcast",
@@ -159,7 +154,8 @@
                                                                         "label":  "Project",
                                                                         "url":  "https://www.buzzsprout.com/835705/10472619-when-couples-argue"
                                                                     }
-                                                                ]
+                                                                ],
+                                                      "description":  "An anthology-style audio drama podcast that drops ordinary people into eerie, reality-bending encounters."
                                                   }
                                               ]
                                 },
@@ -175,7 +171,8 @@
                                                                         "label":  "Project",
                                                                         "url":  "https://youtu.be/QZc2mcF8r_0"
                                                                     }
-                                                                ]
+                                                                ],
+                                                      "description":  "A dramatic short film set around life inside a bunker, with Umi voicing Chloe."
                                                   },
                                                   {
                                                       "title":  "Headstone of Solitude",
@@ -186,7 +183,8 @@
                                                                         "label":  "Project",
                                                                         "url":  "https://youtu.be/7Ryf27-lnBo"
                                                                     }
-                                                                ]
+                                                                ],
+                                                      "description":  "A moody supernatural short film built around grief, isolation, and a haunting presence."
                                                   }
                                               ]
                                 },
@@ -202,7 +200,8 @@
                                                                         "label":  "Project",
                                                                         "url":  "https://youtu.be/hGj7GVFAD70"
                                                                     }
-                                                                ]
+                                                                ],
+                                                      "description":  "An animated episode set inside the Meetup Superstore, following the CRiTORA cast through a rainy-day adventure."
                                                   }
                                               ]
                                 },
@@ -218,7 +217,8 @@
                                                                         "label":  "Project",
                                                                         "url":  "https://www.facebook.com/PartnersFCU/videos/1767914383231113/"
                                                                     }
-                                                                ]
+                                                                ],
+                                                      "description":  "A promotional spot for Partners Credit Union centered on its custom card design experience."
                                                   }
                                               ],
                                     "unlinkedItems":  [
@@ -226,7 +226,8 @@
                                                               "title":  "Disney Employee Centers Trailer",
                                                               "year":  2016,
                                                               "role":  "Representative",
-                                                              "note":  "Footage available upon request"
+                                                              "note":  "Footage available upon request",
+                                                              "description":  "A corporate trailer promoting Disney Employee Centers and their employee-facing support services."
                                                           }
                                                       ]
                                 },
@@ -242,7 +243,8 @@
                                                                         "label":  "Project",
                                                                         "url":  "https://www.tripvia.tours"
                                                                     }
-                                                                ]
+                                                                ],
+                                                      "description":  "An app-based guided audio tour experience that uses narration and local storytelling to bring destinations to life."
                                                   },
                                                   {
                                                       "title":  "Big Misunderstood Wolf: Part 2",
@@ -253,7 +255,8 @@
                                                                         "label":  "Project",
                                                                         "url":  "https://hiddenworld.icu"
                                                                     }
-                                                                ]
+                                                                ],
+                                                      "description":  "An illustrated interactive audiobook sequel where something feels off and the mystery deepens."
                                                   }
                                               ]
                                 },
@@ -266,14 +269,15 @@
                                                       "role":  "Xybara",
                                                       "links":  [
                                                                     {
-                                                                        "label":  "EP 4",
+                                                                        "label":  "Episode 4",
                                                                         "url":  "https://youtu.be/HPCIhtRDl7Y"
                                                                     },
                                                                     {
-                                                                        "label":  "EP 5",
+                                                                        "label":  "Episode 5",
                                                                         "url":  "https://youtu.be/rDN8Msv-iik"
                                                                     }
-                                                                ]
+                                                                ],
+                                                      "description":  "A fan-made fantasy audio series following an original storyline in a game-inspired world."
                                                   },
                                                   {
                                                       "title":  "Benders \u0026 Brews: Bill Door",
@@ -284,7 +288,8 @@
                                                                         "label":  "Project",
                                                                         "url":  "https://open.spotify.com/episode/5nt3NStcrMHqCeTn1lro0c?si=3a53d9af09904107"
                                                                     }
-                                                                ]
+                                                                ],
+                                                      "description":  "An Avatar-inspired actual-play audio series following a cast of original characters through a bending-filled adventure."
                                                   },
                                                   {
                                                       "title":  "Odyssey",
@@ -295,7 +300,8 @@
                                                                         "label":  "Project",
                                                                         "url":  "https://www.youtube.com/watch?v=o4tnIIn0u0s"
                                                                     }
-                                                                ]
+                                                                ],
+                                                      "description":  "A fan-made narrative adventure that reimagines a mythic quest through voice-driven storytelling."
                                                   },
                                                   {
                                                       "title":  "Havasu Blues",
@@ -306,7 +312,8 @@
                                                                         "label":  "Project",
                                                                         "url":  "https://www.nexusmods.com/newvegas/mods/76680"
                                                                     }
-                                                                ]
+                                                                ],
+                                                      "description":  "A Fallout: New Vegas fan project with voiced story content set around the Mojave wasteland."
                                                   },
                                                   {
                                                       "title":  "Moon Knight: Long Nights",
@@ -317,7 +324,8 @@
                                                                         "label":  "Project",
                                                                         "url":  "https://youtu.be/Aer7Wm4-4T4"
                                                                     }
-                                                                ]
+                                                                ],
+                                                      "description":  "A Marvel-inspired audio drama in which Moon Knight hunts a brutal new threat stalking New York at night."
                                                   },
                                                   {
                                                       "title":  "Strawberry Panic! Fandub",
@@ -328,7 +336,8 @@
                                                                         "label":  "Project",
                                                                         "url":  "https://www.youtube.com/playlist?list=PLnZZKz9K8dba29SeHIXjizl3eddcZaUak"
                                                                     }
-                                                                ]
+                                                                ],
+                                                      "description":  "A fandub adaptation of Strawberry Panic!, following elite-school romance, rivalry, and drama."
                                                   },
                                                   {
                                                       "title":  "Sailor Moon Missing Episodes Fandub",
@@ -336,14 +345,15 @@
                                                       "role":  "Sailor Star Fighter / Justin",
                                                       "links":  [
                                                                     {
-                                                                        "label":  "EP 184",
+                                                                        "label":  "Episode 184",
                                                                         "url":  "https://starsfandub.com/episodes/184-a-full-house/"
                                                                     },
                                                                     {
-                                                                        "label":  "EP 187",
+                                                                        "label":  "Episode 187",
                                                                         "url":  "https://starsfandub.com/episodes/187-batter-up-sailor-moon/"
                                                                     }
-                                                                ]
+                                                                ],
+                                                      "description":  "A fan dub project recreating Sailor Moon episodes that were never officially dubbed in English."
                                                   },
                                                   {
                                                       "title":  "Welcome to the Doki Doki Literature Club Fandub",
@@ -354,7 +364,8 @@
                                                                         "label":  "Project",
                                                                         "url":  "https://www.youtube.com/watch?v=XoYUkjqrBoY"
                                                                     }
-                                                                ]
+                                                                ],
+                                                      "description":  "A voice-driven fan adaptation based on the meta-horror visual novel world of Doki Doki Literature Club."
                                                   }
                                               ]
                                 }
@@ -426,10 +437,6 @@
                         ],
     "contact":  {
                     "email":  "umifusionvo@gmail.com",
-                    "discord":  "UmifusionVO #0626",
                     "location":  "Seattle, WA area"
                 }
 }
-
-
-

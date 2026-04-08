@@ -266,11 +266,11 @@ const facebookEmbeds = {
 const customVideoEmbeds = {
   "https://starsfandub.com/episodes/184-a-full-house/": {
     src: "https://odysee.com/$/embed/@Fighter4LuvFandubs:2/Sailor-Stars-Ep184-A-Full-House-fandub:8?r=BW3acLhGaSmGnTNShWkH4Jz9tRo7QEZz",
-    title: "Sailor Moon Missing Episodes Fandub EP 184 video",
+    title: "Sailor Moon Missing Episodes Fandub Episode 184 video",
   },
   "https://starsfandub.com/episodes/187-batter-up-sailor-moon/": {
     src: "https://odysee.com/$/embed/@Fighter4LuvFandubs:2/Sailor-Stars-Ep187-Batter-Up-Sailor-Moon-uncut:b?r=BW3acLhGaSmGnTNShWkH4Jz9tRo7QEZz",
-    title: "Sailor Moon Missing Episodes Fandub EP 187 video",
+    title: "Sailor Moon Missing Episodes Fandub Episode 187 video",
   },
 };
 
@@ -370,16 +370,15 @@ const renderMetrics = (data) => {
       (category.unlinkedItems?.length ?? 0),
     0
   );
-  const categoryCount = data.portfolioCategories.length;
   const additionalCount = data.visibleButUnlinkedPortfolioMentions.reduce(
     (total, group) => total + group.items.length,
     0
   );
 
   const metrics = [
-    { label: "Project credits", value: `${portfolioCount}+` },
-    { label: "Portfolio categories", value: String(categoryCount) },
-    { label: "Additional mentions", value: `${additionalCount}+` },
+    { label: "Project credits", value: "22+" },
+    { label: "IMDb credits", value: "8" },
+    { label: "Experience", value: "5+ years" },
   ];
 
   const metricsList = document.getElementById("hero-metrics");
@@ -482,7 +481,7 @@ const renderCredits = (data) => {
       }
 
       if (item.roles?.length) {
-        meta.textContent = item.roles.map((role) => role.name).join(" / ");
+        meta.textContent = item.description ?? item.roles.map((role) => role.name).join(" / ");
         const useCompactEmbeds = item.roles.length > 1;
         const useShortSpotifyEmbeds = shortSpotifyEmbedTitles.has(item.title);
         const combinedEmbeds = [];
@@ -506,7 +505,7 @@ const renderCredits = (data) => {
           links.appendChild(embedsWrap);
         }
       } else {
-        meta.textContent = item.role;
+        meta.textContent = item.description ?? item.role;
         if (item.links?.length) {
           const mediaEmbeds = buildEmbedCards(
             item.links,
@@ -550,9 +549,10 @@ const renderCredits = (data) => {
         const meta = clone.querySelector(".credit-meta");
         const year = clone.querySelector(".credit-year");
         const links = clone.querySelector(".credit-links");
+        const notes = clone.querySelector(".credit-notes");
 
         title.textContent = entry.title;
-        meta.textContent = `${entry.role} (${entry.note})`;
+        meta.textContent = entry.description ?? `${entry.role} (${entry.note})`;
         year.textContent = entry.year;
         links.remove();
         itemsWrap.appendChild(clone);
@@ -616,13 +616,9 @@ const renderContact = (data) => {
   const contactList = document.getElementById("contact-list");
   const contactItems = [
     {
-      label: "Email",
+      label: "Bookings & inquiries",
       value: data.contact.email,
       href: `mailto:${data.contact.email}`,
-    },
-    {
-      label: "Discord",
-      value: data.contact.discord,
     },
   ];
 
@@ -710,3 +706,9 @@ fetch(dataUrl)
   })
   .then(renderPage)
   .catch(renderError);
+
+
+
+
+
+

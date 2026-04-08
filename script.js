@@ -527,7 +527,8 @@ const renderCredits = (data) => {
       }
 
       title.textContent = item.title;
-      year.textContent = item.year;
+      year.textContent = item.year ?? "";
+      year.hidden = !item.year;
 
       const projectVisual = createProjectVisual(item);
       if (projectVisual) {
@@ -564,7 +565,10 @@ const renderCredits = (data) => {
           links.appendChild(embedsWrap);
         }
       } else {
-        meta.textContent = item.description ?? item.role;
+        meta.textContent =
+          item.role && item.description
+            ? `${buildPerformanceContext(item.role)} | ${item.description}`
+            : item.description ?? item.role;
         if (item.links?.length) {
           const mediaEmbeds = buildEmbedCards(
             item.links,
@@ -611,7 +615,8 @@ const renderCredits = (data) => {
 
         title.textContent = entry.title;
         meta.textContent = entry.description ?? entry.role;
-        year.textContent = entry.year;
+        year.textContent = entry.year ?? "";
+        year.hidden = !entry.year;
         links.appendChild(createUnlinkedMediaCard(entry));
         itemsWrap.appendChild(clone);
       });
@@ -643,6 +648,54 @@ const renderSimpleList = (id, items) => {
   });
 };
 
+const renderBackgroundCredits = (id, items) => {
+  const list = document.getElementById(id);
+  list.className = "background-credit-list";
+  list.innerHTML = "";
+
+  items.forEach((item) => {
+    const parsed =
+      item && typeof item === "object" && !Array.isArray(item)
+        ? {
+            title: item.title ?? "",
+            detail: item.detail ?? "",
+            meta: item.year ?? item.meta ?? "",
+          }
+        : {
+            title: String(item ?? ""),
+            detail: "",
+            meta: "",
+          };
+
+    const li = document.createElement("li");
+    li.className = "background-credit-item";
+
+    const copy = document.createElement("div");
+    copy.className = "background-credit-copy";
+
+    const title = document.createElement("h4");
+    title.textContent = parsed.title;
+    copy.appendChild(title);
+
+    if (parsed.detail) {
+      const detail = document.createElement("p");
+      detail.textContent = parsed.detail;
+      copy.appendChild(detail);
+    }
+
+    li.appendChild(copy);
+
+    if (parsed.meta) {
+      const meta = document.createElement("span");
+      meta.className = "background-credit-meta";
+      meta.textContent = parsed.meta;
+      li.appendChild(meta);
+    }
+
+    list.appendChild(li);
+  });
+};
+
 const renderAdditionalExperience = (data) => {
   const container = document.getElementById("additional-experience");
   const wrapper = document.createElement("div");
@@ -652,18 +705,55 @@ const renderAdditionalExperience = (data) => {
     const block = document.createElement("section");
     block.className = "experience-group";
 
-    const heading = document.createElement("h4");
-    heading.textContent = group.category;
-    block.appendChild(heading);
 
-    const list = document.createElement("ul");
-    list.className = "stack-list";
-    group.items.forEach((item) => {
-      const li = document.createElement("li");
-      li.textContent = item;
-      list.appendChild(li);
-    });
-    block.appendChild(list);
+    const structuredItems = group.items
+      .filter((item) => item && typeof item === "object" && !Array.isArray(item))
+      .sort((a, b) => {
+        const getSortYear = (value) => Number.parseInt(String(value).split("-")[0], 10) || 0;
+        return getSortYear(b.year) - getSortYear(a.year);
+      });
+
+    if (structuredItems.length === group.items.length) {
+      const list = document.createElement("div");
+      list.className = "experience-credit-list";
+
+      structuredItems.forEach((item) => {
+        const article = document.createElement("article");
+        article.className = "experience-credit";
+
+        const copy = document.createElement("div");
+        copy.className = "experience-credit-copy";
+
+        const title = document.createElement("h5");
+        title.textContent = item.title;
+
+        const role = document.createElement("p");
+        role.textContent = `Umi Fusion as ${item.role}`;
+
+        const year = document.createElement("span");
+        year.className = "experience-credit-year";
+        year.textContent = item.year ?? "";
+        year.hidden = !item.year;
+
+        copy.appendChild(title);
+        copy.appendChild(role);
+        article.appendChild(copy);
+        article.appendChild(year);
+        list.appendChild(article);
+      });
+
+      block.appendChild(list);
+    } else {
+      const list = document.createElement("ul");
+      list.className = "stack-list";
+      group.items.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = typeof item === "string" ? item : item.title;
+        list.appendChild(li);
+      });
+      block.appendChild(list);
+    }
+
     wrapper.appendChild(block);
   });
 
@@ -741,8 +831,8 @@ const renderPage = (data) => {
   renderDemos(data);
   renderCredits(data);
   renderEquipment(data);
-  renderSimpleList("training-list", data.training);
-  renderSimpleList("education-list", data.education);
+  renderBackgroundCredits("training-list", data.training);
+  renderBackgroundCredits("education-list", data.education);
   renderAdditionalExperience(data);
   renderContact(data);
   injectSchema(data);
@@ -763,6 +853,16 @@ fetch(dataUrl)
   })
   .then(renderPage)
   .catch(renderError);
+
+
+
+
+
+
+
+
+
+
 
 
 

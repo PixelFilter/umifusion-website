@@ -157,7 +157,8 @@ a {
 h1,
 h2,
 h3,
-h4 {
+h4,
+h5 {
   margin: 0;
   font-family: var(--title-font);
   color: var(--surface-ink);
@@ -924,6 +925,93 @@ h3 {
   margin-bottom: 0.75rem;
 }
 
+.background-credit-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+}
+
+.background-credit-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.85rem 1rem;
+  align-items: start;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid rgba(20, 33, 61, 0.08);
+}
+
+.background-credit-item:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.background-credit-copy,
+.experience-credit-copy {
+  min-width: 0;
+}
+
+.background-credit-copy h4,
+.experience-credit-copy h5 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--surface-ink);
+}
+
+.background-credit-copy p,
+.experience-credit-copy p {
+  margin: 0.3rem 0 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.background-credit-meta,
+.experience-credit-year {
+  align-self: center;
+  white-space: nowrap;
+  color: var(--muted);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.experience-credit-list {
+  display: grid;
+}
+
+.experience-credit {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.9rem 1.25rem;
+  align-items: start;
+  padding: 0.95rem 0;
+  border-bottom: 1px solid rgba(20, 33, 61, 0.08);
+}
+
+.experience-credit:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+@media (max-width: 640px) {
+  .experience-credit {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+
+  .experience-credit-year {
+    justify-self: start;
+  }
+
+  .background-credit-item {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+
+  .background-credit-meta {
+    justify-self: start;
+  }
+}
+
 .contact-grid {
   grid-template-columns: 0.9fr 1.1fr;
 }
@@ -1140,6 +1228,13 @@ h3 {
     transition: none !important;
   }
 }
+
+
+
+
+
+
+
 
 
 

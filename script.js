@@ -43,14 +43,14 @@ const getSpotifyEmbedUrl = (url) => {
   }
 };
 
-const createSpotifyEmbedCard = ({ label, url, context, compact = false }) => {
+const createSpotifyEmbedCard = ({ label, url, context, compact = false, short = false }) => {
   const embedUrl = getSpotifyEmbedUrl(url);
   if (!embedUrl) {
     return null;
   }
 
   const card = document.createElement("section");
-  card.className = `spotify-embed-card${compact ? " is-compact" : ""}`;
+  card.className = `spotify-embed-card${compact ? " is-compact" : ""}${short ? " is-short" : ""}`;
 
   const meta = document.createElement("div");
   meta.className = "spotify-embed-meta";
@@ -139,7 +139,7 @@ const createYouTubeEmbedCard = ({ label, url, context, compact = false }) => {
   return card;
 };
 
-const buildEmbedCards = (entries, context, forceCompact = false) => {
+const buildEmbedCards = (entries, context, forceCompact = false, forceShort = false) => {
   const compact = forceCompact || entries.length > 1;
 
   return entries
@@ -151,6 +151,7 @@ const buildEmbedCards = (entries, context, forceCompact = false) => {
           url: entry.url,
           context,
           compact,
+          short: forceShort,
         }),
       },
       {
@@ -187,6 +188,9 @@ const appendNonEmbeddedLinks = (container, entries, embeddedUrls) => {
 };
 
 const buildPerformanceContext = (roleName) => `Umi Fusion as ${roleName}`;
+
+const shortSpotifyEmbedTitles = new Set(["Solarity", "Eastmouth"]);
+const horizontalEmbedTitles = new Set(["Solarity", "Eastmouth"]);
 
 const getAudioMimeType = (format) => {
   const normalized = format.toLowerCase();
@@ -460,6 +464,10 @@ const renderCredits = (data) => {
       const links = clone.querySelector(".credit-links");
       const notes = clone.querySelector(".credit-notes");
 
+      if (horizontalEmbedTitles.has(item.title)) {
+        clone.classList.add("credit-item-scroll-embeds");
+      }
+
       title.textContent = item.title;
       year.textContent = item.year;
 
@@ -476,13 +484,15 @@ const renderCredits = (data) => {
       if (item.roles?.length) {
         meta.textContent = item.roles.map((role) => role.name).join(" / ");
         const useCompactEmbeds = item.roles.length > 1;
+        const useShortSpotifyEmbeds = shortSpotifyEmbedTitles.has(item.title);
         const combinedEmbeds = [];
 
         item.roles.forEach((role) => {
           const mediaEmbeds = buildEmbedCards(
             role.links,
             buildPerformanceContext(role.name),
-            useCompactEmbeds
+            useCompactEmbeds,
+            useShortSpotifyEmbeds
           );
           const embeddedUrls = new Set(mediaEmbeds.map((entry) => entry.url));
           appendNonEmbeddedLinks(links, role.links, embeddedUrls);
@@ -498,7 +508,12 @@ const renderCredits = (data) => {
       } else {
         meta.textContent = item.role;
         if (item.links?.length) {
-          const mediaEmbeds = buildEmbedCards(item.links, buildPerformanceContext(item.role));
+          const mediaEmbeds = buildEmbedCards(
+            item.links,
+            buildPerformanceContext(item.role),
+            false,
+            shortSpotifyEmbedTitles.has(item.title)
+          );
           const embeddedUrls = new Set(mediaEmbeds.map((entry) => entry.url));
 
           if (!shouldHideProjectLinksForItem(item)) {

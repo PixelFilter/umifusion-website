@@ -461,6 +461,25 @@ h3 {
   margin-top: 1rem;
 }
 
+.credit-item-scroll-embeds .media-embed-grid {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  padding-bottom: 0.35rem;
+}
+
+.credit-item-scroll-embeds .media-embed-grid > * {
+  flex: 0 0 min(360px, 85vw);
+  min-width: 0;
+  max-width: min(360px, 85vw);
+  scroll-snap-align: start;
+}
+
 .spotify-embed-card {
   padding: 0.9rem;
   border-radius: 22px;
@@ -517,6 +536,10 @@ h3 {
 
 .spotify-embed-card.is-compact .spotify-frame-wrap iframe {
   height: 272px;
+}
+
+.spotify-embed-card.is-short .spotify-frame-wrap iframe {
+  height: 232px;
 }
 
 .youtube-embed-card {
@@ -696,6 +719,7 @@ h3 {
 .credit-item {
   padding: 1rem 0;
   border-bottom: 1px solid rgba(20, 33, 61, 0.08);
+  min-width: 0;
 }
 
 .credit-item:last-child {
@@ -731,6 +755,11 @@ h3 {
 .credit-links,
 .credit-notes {
   margin-top: 0.8rem;
+}
+
+.credit-links {
+  width: 100%;
+  min-width: 0;
 }
 
 .credit-notes p,

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-labelledby="title">
+  <title>Umi Fusion favicon</title>
+  <defs>
+    <linearGradient id="ufGradient" x1="12" y1="10" x2="52" y2="54" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#14213d" />
+      <stop offset="1" stop-color="#2f4975" />
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="31" fill="url(#ufGradient)" />
+  <rect x="24" y="13" width="16" height="24" rx="8" fill="#fffaf0" />
+  <path
+    d="M20 29c0 6.6 5.4 12 12 12s12-5.4 12-12"
+    fill="none"
+    stroke="#fffaf0"
+    stroke-width="4"
+    stroke-linecap="round"
+  />
+  <path
+    d="M32 41v7"
+    fill="none"
+    stroke="#fffaf0"
+    stroke-width="4"
+    stroke-linecap="round"
+  />
+  <path
+    d="M25 50h14"
+    fill="none"
+    stroke="#fffaf0"
+    stroke-width="4"
+    stroke-linecap="round"
+  />
+</svg>

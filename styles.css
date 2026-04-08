@@ -396,11 +396,53 @@ h3 {
   box-shadow: 0 18px 40px rgba(9, 19, 15, 0.22);
 }
 
+.project-visual-card-unlinked {
+  cursor: default;
+  background:
+    radial-gradient(circle at top right, rgba(197, 107, 67, 0.12), transparent 30%),
+    linear-gradient(180deg, #2a2018 0%, #17110d 100%);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
 .project-visual-media {
   overflow: hidden;
   border-radius: 18px;
   aspect-ratio: 16 / 9;
   background: rgba(255, 255, 255, 0.04);
+}
+
+.project-visual-placeholder {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 0.85rem;
+  padding: 1.25rem;
+  border: 1px dashed rgba(255, 255, 255, 0.16);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent 55%),
+    rgba(255, 255, 255, 0.03);
+}
+
+.project-visual-lock-icon {
+  width: clamp(4rem, 10vw, 5.75rem);
+  height: clamp(4rem, 10vw, 5.75rem);
+  stroke: rgba(255, 255, 255, 0.82);
+  stroke-width: 1.5;
+  fill: none;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+}
+
+.project-visual-lock-icon .icon-fill {
+  fill: rgba(255, 255, 255, 0.82);
+  stroke: none;
+}
+
+.project-visual-placeholder-note {
+  margin: 0;
+  max-width: 20rem;
+  text-align: center;
+  line-height: 1.5;
+  color: rgba(240, 248, 242, 0.82);
 }
 
 .project-visual-media img {

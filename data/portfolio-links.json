@@ -158,10 +158,21 @@
                                                       "description":  "An anthology-style audio drama podcast that drops ordinary people into eerie, reality-bending encounters."
                                                   }
                                               ]
-                                },
-                                {
+                                },                                {
                                     "category":  "Short Films",
                                     "items":  [
+                                                  {
+                                                      "title":  "1710 Bunker Hill Avenue",
+                                                      "year":  2025,
+                                                      "role":  "Riley-B12",
+                                                      "links":  [
+                                                                    {
+                                                                        "label":  "Full Film",
+                                                                        "url":  "https://www.youtube.com/watch?v=0yIMQ0oNO6w"
+                                                                    }
+                                                                ],
+                                                      "description":  "A sci-fi film set after an alien invasion, following Mason Redgrave and his virtual companion Riley-B12 through a devastated world."
+                                                  },
                                                   {
                                                       "title":  "The Bunker",
                                                       "year":  2022,
@@ -226,6 +237,7 @@
                                                               "title":  "Disney Employee Centers Trailer",
                                                               "year":  2016,
                                                               "role":  "Representative",
+                                                              "label":  "Full Trailer",
                                                               "note":  "Footage available upon request",
                                                               "description":  "A corporate trailer promoting Disney Employee Centers and their employee-facing support services."
                                                           }
@@ -452,6 +464,10 @@
                     "location":  "Seattle, WA area"
                 }
 }
+
+
+
+
 
 
 

@@ -348,6 +348,26 @@ const createProjectVisual = (item) => {
   return card;
 };
 
+const createUnlinkedMediaCard = (item) => {
+  const card = document.createElement("section");
+  card.className = "project-visual-card project-visual-card-unlinked";
+  card.innerHTML = `
+    <div class="project-visual-meta">
+      <strong>${item.label ?? "Private media"}</strong>
+      <span>${buildPerformanceContext(item.role)}</span>
+    </div>
+    <div class="project-visual-media project-visual-placeholder">
+      <svg viewBox="0 0 24 24" class="project-visual-lock-icon">
+        <path d="M7.5 10V7.75a4.5 4.5 0 1 1 9 0V10"></path>
+        <rect x="5" y="10" width="14" height="10" rx="2.5"></rect>
+        <circle cx="12" cy="15" r="1.25" class="icon-fill"></circle>
+      </svg>
+      <p class="project-visual-placeholder-note">${item.note ?? "Footage available upon request"}</p>
+    </div>
+  `;
+  return card;
+};
+
 const createFacebookEmbedCard = (item) => {
   const embed = facebookEmbeds[item.title];
   if (!embed) {
@@ -588,12 +608,11 @@ const renderCredits = (data) => {
         const meta = clone.querySelector(".credit-meta");
         const year = clone.querySelector(".credit-year");
         const links = clone.querySelector(".credit-links");
-        const notes = clone.querySelector(".credit-notes");
 
         title.textContent = entry.title;
-        meta.textContent = entry.description ?? `${entry.role} (${entry.note})`;
+        meta.textContent = entry.description ?? entry.role;
         year.textContent = entry.year;
-        links.remove();
+        links.appendChild(createUnlinkedMediaCard(entry));
         itemsWrap.appendChild(clone);
       });
     }

@@ -230,6 +230,10 @@ const appendNonEmbeddedLinks = (container, entries, embeddedUrls) => {
 
 const buildPerformanceContext = (roleName) => `Umi Fusion as ${roleName}`;
 
+const getPrimaryLinkLabel = (item) =>
+  item.links?.find((entry) => typeof entry.label === "string" && entry.label.trim())?.label ??
+  item.title;
+
 const shortSpotifyEmbedTitles = new Set(["Solarity", "Eastmouth"]);
 const horizontalEmbedTitles = new Set(["Solarity", "Eastmouth"]);
 
@@ -319,6 +323,8 @@ const createProjectVisual = (item) => {
     return null;
   }
 
+  const projectLabel = getPrimaryLinkLabel(item);
+
   const card = document.createElement("a");
   card.className = "project-visual-card";
   if (
@@ -332,7 +338,7 @@ const createProjectVisual = (item) => {
   card.rel = "noreferrer";
   card.innerHTML = `
     <div class="project-visual-meta">
-      <strong>${item.title}</strong>
+      <strong>${projectLabel}</strong>
       <span>${buildPerformanceContext(item.role)}</span>
     </div>
     <div class="project-visual-media">
@@ -348,11 +354,13 @@ const createFacebookEmbedCard = (item) => {
     return null;
   }
 
+  const projectLabel = getPrimaryLinkLabel(item);
+
   const card = document.createElement("section");
   card.className = "facebook-embed-card";
   card.innerHTML = `
     <div class="facebook-embed-meta">
-      <strong>Project video</strong>
+      <strong>${projectLabel}</strong>
       <span>${buildPerformanceContext(item.role)}</span>
     </div>
     <div class="facebook-frame-wrap">

@@ -677,6 +677,10 @@ h3 {
   position: relative;
 }
 
+.media-scrollbar-arrow {
+  display: none;
+}
+
 .media-scrollbar-indicator-track {
   position: relative;
   width: 100%;
@@ -1220,14 +1224,54 @@ h3 {
   }
 
   .credit-item-scroll-embeds .media-scrollbar-indicator {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
     width: calc(100% + (var(--credit-group-padding) * 2));
-    height: 0.95rem;
+    height: 1.2rem;
     margin:
-      0.6rem
+      0.8rem
       calc(-1 * var(--credit-group-padding))
       0;
-    padding: 0 calc(var(--credit-group-padding) + var(--credit-scroll-item-inset-mobile));
+    padding: 0 calc(var(--credit-group-padding) * 0.35);
+  }
+
+  .credit-item-scroll-embeds .media-scrollbar-indicator-track {
+    flex: 1 1 auto;
+    background: rgba(226, 209, 189, 0.96);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 250, 243, 0.9),
+      0 1px 3px rgba(20, 33, 61, 0.08);
+  }
+
+  .credit-item-scroll-embeds .media-scrollbar-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.9rem;
+    height: 1.9rem;
+    padding: 0;
+    border: 1px solid rgba(197, 107, 67, 0.25);
+    border-radius: 999px;
+    background: rgba(255, 250, 243, 0.96);
+    color: var(--accent-deep);
+    box-shadow: 0 4px 10px rgba(20, 33, 61, 0.08);
+  }
+
+  .credit-item-scroll-embeds .media-scrollbar-arrow svg {
+    width: 1.05rem;
+    height: 1.05rem;
+    display: block;
+    stroke: currentColor;
+    stroke-width: 2.4;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .credit-item-scroll-embeds .media-scrollbar-arrow:disabled {
+    opacity: 0.42;
+    box-shadow: none;
   }
 
   .experience-credit {

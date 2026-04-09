@@ -35,7 +35,14 @@ const setupHorizontalScrollIndicator = (scroller) => {
 
   const indicator = document.createElement("div");
   indicator.className = "media-scrollbar-indicator";
-  indicator.setAttribute("aria-hidden", "true");
+  indicator.setAttribute("aria-label", "Horizontal project scroller controls");
+
+  const prevButton = document.createElement("button");
+  prevButton.className = "media-scrollbar-arrow media-scrollbar-arrow-prev";
+  prevButton.type = "button";
+  prevButton.setAttribute("aria-label", "Scroll left");
+  prevButton.innerHTML =
+    '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14.5 5.5 8.5 12l6 6.5"></path></svg>';
 
   const track = document.createElement("div");
   track.className = "media-scrollbar-indicator-track";
@@ -43,8 +50,17 @@ const setupHorizontalScrollIndicator = (scroller) => {
   const thumb = document.createElement("div");
   thumb.className = "media-scrollbar-indicator-thumb";
 
+  const nextButton = document.createElement("button");
+  nextButton.className = "media-scrollbar-arrow media-scrollbar-arrow-next";
+  nextButton.type = "button";
+  nextButton.setAttribute("aria-label", "Scroll right");
+  nextButton.innerHTML =
+    '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9.5 5.5 6 6.5-6 6.5"></path></svg>';
+
   track.appendChild(thumb);
+  indicator.appendChild(prevButton);
   indicator.appendChild(track);
+  indicator.appendChild(nextButton);
   shell.appendChild(indicator);
 
   let frameId = 0;
@@ -92,11 +108,15 @@ const setupHorizontalScrollIndicator = (scroller) => {
     );
     const travelPercent = 100 - thumbSizePercent;
     const progress = maxScroll > 0 ? scroller.scrollLeft / maxScroll : 0;
+    const atStart = progress <= 0.005;
+    const atEnd = progress >= 0.995;
     indicator.style.setProperty("--scroll-indicator-size", `${thumbSizePercent}%`);
     indicator.style.setProperty(
       "--scroll-indicator-offset",
       `${travelPercent * progress}%`
     );
+    prevButton.disabled = atStart;
+    nextButton.disabled = atEnd;
   };
 
   const requestSync = () => {
@@ -142,6 +162,16 @@ const setupHorizontalScrollIndicator = (scroller) => {
 
   thumb.addEventListener("pointerup", stopDragging);
   thumb.addEventListener("pointercancel", stopDragging);
+
+  const scrollByPage = (direction) => {
+    scroller.scrollBy({
+      left: direction * Math.max(scroller.clientWidth * 0.85, 180),
+      behavior: "smooth",
+    });
+  };
+
+  prevButton.addEventListener("click", () => scrollByPage(-1));
+  nextButton.addEventListener("click", () => scrollByPage(1));
 
   scroller.addEventListener("scroll", requestSync, { passive: true });
   window.addEventListener("resize", requestSync, { passive: true });

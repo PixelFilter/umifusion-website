@@ -1364,12 +1364,9 @@ h3 {
   height: 2.5rem;
   display: grid;
   place-items: center;
-  border-radius: 18px;
-  background:
-    linear-gradient(135deg, rgba(197, 107, 67, 0.16), rgba(197, 107, 67, 0.05));
-  color: var(--accent-deep);
-  border: 1px solid rgba(197, 107, 67, 0.16);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  border-radius: 0.35rem;
+  background: #000;
+  color: #fff;
 }
 
 .social-card-icon svg {
@@ -1385,6 +1382,39 @@ h3 {
 .social-card-icon .icon-fill {
   fill: currentColor;
   stroke: none;
+}
+
+.social-card-icon-ccc svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.social-card-icon-ccc .icon-fill {
+  fill: #000;
+  stroke: #fff;
+  stroke-width: 1.4;
+  paint-order: stroke fill;
+  stroke-linejoin: round;
+}
+
+.social-card-icon-instagram svg {
+  width: 1.9rem;
+  height: 1.9rem;
+}
+
+.social-card-icon-email svg {
+  width: 1.9rem;
+  height: 1.9rem;
+}
+
+.social-card-icon-imdb svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.social-card-icon-backstage svg {
+  width: 2.2rem;
+  height: 2.2rem;
 }
 
 .social-card-copy {
@@ -1828,13 +1858,4 @@ h3 {
     transition: none !important;
   }
 }
-
-
-
-
-
-
-
-
-
 

@@ -459,6 +459,7 @@ const createProfileCard = ({ label, detail, href, service = "url", action = "ext
 
   const main = document.createElement(href ? "a" : "div");
   main.className = "social-card-main";
+  const normalizedService = service.toLowerCase();
 
   if (href) {
     main.href = href;
@@ -469,7 +470,7 @@ const createProfileCard = ({ label, detail, href, service = "url", action = "ext
   }
 
   main.innerHTML = `
-    <span class="social-card-icon">${getSocialIcon(service)}</span>
+    <span class="social-card-icon social-card-icon-${normalizedService}">${getSocialIcon(service)}</span>
     <span class="social-card-copy">
       <strong>${label}</strong>
       <span class="social-card-detail">${detail}</span>
@@ -769,6 +770,21 @@ const getSocialIcon = (service) => {
         <path d="M5.5 8l6.5 5 6.5-5"></path>
       </svg>
     `,
+    ccc: `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <text
+          x="12"
+          y="12"
+          text-anchor="middle"
+          dominant-baseline="middle"
+          class="icon-fill"
+          font-size="8.2"
+          font-weight="700"
+          font-family="Arial, Helvetica, sans-serif"
+          letter-spacing="1.05"
+        >CCC</text>
+      </svg>
+    `,
     instagram: `
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <rect x="4" y="4" width="16" height="16" rx="5"></rect>
@@ -776,14 +792,26 @@ const getSocialIcon = (service) => {
         <circle cx="17" cy="7" r="1"></circle>
       </svg>
     `,
+    backstage: `
+      <svg viewBox="0 0 400 400" aria-hidden="true">
+        <path
+          class="icon-fill"
+          d="M166 399.5 152.5 399 153-.5H166l3 2h4l17 5 14 7 14 10L229.5 35l11 16 8 18 4 19v23l-4 19-9 20-10 14-12.5 12.5-18 12-14 6-16 3-2.5 1.5 1.5 2.5 16 3 23 11 12 9 9.5 9.5 9 12 7 13 7 22 1 30-3 16-4 11-9 17-6 8-13.5 13.5-20 13-12 5-19 5Z"
+        ></path>
+      </svg>
+    `,
     imdb: `
       <svg viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="3.5" y="5.5" width="17" height="13" rx="3"></rect>
-        <path d="M7 8.5v7"></path>
-        <path d="M10 8.5v7"></path>
-        <path d="M10 12h3.5"></path>
-        <path d="M13.5 8.5v7"></path>
-        <path d="M16.5 15.5v-7H18a2 2 0 0 1 0 4h-1.5"></path>
+        <text
+          x="12"
+          y="15.25"
+          text-anchor="middle"
+          class="icon-fill"
+          font-size="8.2"
+          font-weight="700"
+          font-family="Arial, Helvetica, sans-serif"
+          letter-spacing="-0.55"
+        >IMDb</text>
       </svg>
     `,
     url: `
@@ -1441,24 +1469,4 @@ fetch(dataUrl)
   })
   .then(renderPage)
   .catch(renderError);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

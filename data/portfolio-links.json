@@ -2,7 +2,7 @@
   "socialProfiles": [
     {
       "label": "Casting Call Club",
-      "service": "url",
+      "service": "ccc",
       "url": "https://www.castingcall.club/umifusion"
     },
     {
@@ -12,7 +12,7 @@
     },
     {
       "label": "Backstage",
-      "service": "url",
+      "service": "backstage",
       "url": "https://www.backstage.com/u/umi-fusion/"
     },
     {
@@ -570,3 +570,4 @@
     "location": "Seattle, WA area"
   }
 }
+

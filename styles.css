@@ -673,6 +673,32 @@ h3 {
   display: none;
 }
 
+.media-embed-scroll-shell {
+  position: relative;
+}
+
+.media-scroll-fade {
+  position: absolute;
+  top: 0;
+  right: calc(-1 * var(--credit-group-padding));
+  bottom: 0.6rem;
+  width: clamp(2.75rem, 7vw, 4.5rem);
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(247, 240, 231, 0) 0%,
+    rgba(247, 240, 231, 0.84) 60%,
+    rgba(247, 240, 231, 1) 100%
+  );
+  opacity: 1;
+  transition: opacity 160ms ease-out;
+}
+
+.media-scroll-fade[hidden],
+.media-embed-scroll-shell.is-at-end .media-scroll-fade {
+  opacity: 0;
+}
+
 .media-scrollbar-indicator-track {
   position: relative;
   width: 100%;
@@ -1224,6 +1250,10 @@ h3 {
       calc(-1 * var(--credit-group-padding))
       0;
     padding: 0 calc(var(--credit-group-padding) + var(--credit-scroll-item-inset-mobile));
+  }
+
+  .media-scroll-fade {
+    bottom: 2.05rem;
   }
 
   .experience-credit {

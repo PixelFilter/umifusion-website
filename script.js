@@ -22,6 +22,22 @@ const setupHorizontalScrollIndicator = (scroller) => {
     return;
   }
 
+  const originalParent = scroller.parentElement;
+
+  if (!originalParent) {
+    return;
+  }
+
+  const shell = document.createElement("div");
+  shell.className = "media-embed-scroll-shell";
+  originalParent.insertBefore(shell, scroller);
+  shell.appendChild(scroller);
+
+  const fade = document.createElement("div");
+  fade.className = "media-scroll-fade";
+  fade.setAttribute("aria-hidden", "true");
+  shell.appendChild(fade);
+
   const indicator = document.createElement("div");
   indicator.className = "media-scrollbar-indicator";
   indicator.setAttribute("aria-hidden", "true");
@@ -34,7 +50,7 @@ const setupHorizontalScrollIndicator = (scroller) => {
 
   track.appendChild(thumb);
   indicator.appendChild(track);
-  scroller.insertAdjacentElement("afterend", indicator);
+  shell.appendChild(indicator);
 
   let frameId = 0;
   let isDragging = false;
@@ -81,12 +97,15 @@ const setupHorizontalScrollIndicator = (scroller) => {
     );
     const travelPercent = 100 - thumbSizePercent;
     const progress = maxScroll > 0 ? scroller.scrollLeft / maxScroll : 0;
+    const isAtEnd = progress >= 0.995;
 
     indicator.style.setProperty("--scroll-indicator-size", `${thumbSizePercent}%`);
     indicator.style.setProperty(
       "--scroll-indicator-offset",
       `${travelPercent * progress}%`
     );
+    fade.hidden = !hasOverflow || isAtEnd;
+    shell.classList.toggle("is-at-end", isAtEnd);
   };
 
   const requestSync = () => {

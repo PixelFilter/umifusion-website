@@ -739,7 +739,16 @@ const getPrimaryLinkLabel = (item) =>
   item.title;
 
 const shortSpotifyEmbedTitles = new Set(["Solarity", "Eastmouth"]);
-const horizontalEmbedTitles = new Set(["Solarity", "Eastmouth"]);
+
+const getProjectLinkCount = (item) => {
+  const directLinks = item.links?.length ?? 0;
+  const roleLinks =
+    item.roles?.reduce((total, role) => total + (role.links?.length ?? 0), 0) ?? 0;
+
+  return directLinks + roleLinks;
+};
+
+const shouldUseHorizontalEmbedScroll = (item) => getProjectLinkCount(item) > 1;
 
 const getAudioMimeType = (format) => {
   const normalized = format.toLowerCase();
@@ -1085,7 +1094,7 @@ const renderCredits = (data) => {
       const links = clone.querySelector(".credit-links");
       const notes = clone.querySelector(".credit-notes");
 
-      if (horizontalEmbedTitles.has(item.title)) {
+      if (shouldUseHorizontalEmbedScroll(item)) {
         clone.classList.add("credit-item-scroll-embeds");
       }
 

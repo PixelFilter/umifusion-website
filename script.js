@@ -160,11 +160,7 @@ const initMobileCategoryMenu = () => {
 
     setTriggerVisible(showTrigger);
 
-    if (!showTrigger) {
-      return;
-    }
-
-    if (nav?.classList.contains("is-open")) {
+    if (!showTrigger || nav?.classList.contains("is-open")) {
       setMenuOpen(false);
     }
 
@@ -1113,6 +1109,7 @@ const renderAdditionalExperience = (data) => {
     if (structuredItems.length === group.items.length) {
       const list = document.createElement("div");
       list.className = "experience-credit-list";
+      const usePlainRoleLabel = group.category === "Theater / Live Performances";
 
       structuredItems.forEach((item) => {
         const article = document.createElement("article");
@@ -1125,7 +1122,7 @@ const renderAdditionalExperience = (data) => {
         title.textContent = item.title;
 
         const role = document.createElement("p");
-        role.textContent = `Umi Fusion as ${item.role}`;
+        role.textContent = usePlainRoleLabel ? item.role : `Umi Fusion as ${item.role}`;
 
         const year = document.createElement("span");
         year.className = "experience-credit-year";

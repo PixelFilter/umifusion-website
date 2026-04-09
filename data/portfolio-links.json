@@ -13,7 +13,7 @@
     {
       "label": "Backstage",
       "service": "url",
-      "url": "https://www.backstage.com/u/umifusion/"
+      "url": "https://www.backstage.com/u/umi-fusion/"
     },
     {
       "label": "IMDb",
@@ -253,17 +253,17 @@
       "category": "Music",
       "items": [
         {
-          "title": "The Afterlife is an Ocean",
-          "year": 2023,
+          "title": "A Life is a River by P3TE",
+          "year": 2024,
           "role": "Natirian Mother",
           "links": [
             {
-              "label": "Music Album",
+              "label": "Song",
               "url": "https://p3te04.bandcamp.com/album/the-afterlife-is-an-ocean",
               "embedUrl": "https://bandcamp.com/EmbeddedPlayer/album=3979515590/size=large/bgcol=ffffff/linkcol=f171a2/tracklist=false/artwork=small/track=2289869543/transparent=true/"
             }
           ],
-          "description": "A music album released by P3TE."
+          "description": "A song released by P3TE for the album The Afterlife is an Ocean."
         }
       ]
     },
@@ -313,7 +313,7 @@
               "url": "https://youtu.be/rDN8Msv-iik"
             }
           ],
-          "description": "A fan-made fantasy audio series following an original storyline in a game-inspired world."
+          "description": "A fan-made fantasy audio series following an original storyline in the Star Trek universe."
         },
         {
           "title": "Benders & Brews: Bill Door",
@@ -389,7 +389,7 @@
               "url": "https://starsfandub.com/episodes/187-batter-up-sailor-moon/"
             }
           ],
-          "description": "A fan dub project recreating Sailor Moon episodes that were never officially dubbed in English."
+          "description": "A fandub project recreating Sailor Moon episodes that were never officially dubbed in English."
         },
         {
           "title": "Welcome to the Doki Doki Literature Club Fandub",

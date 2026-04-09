@@ -1398,25 +1398,6 @@ const renderContact = (data) => {
   contactGroups.appendChild(profilesGroup.section);
 };
 
-const injectSchema = (data) => {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Umi Fusion",
-    jobTitle: "Voice Actor",
-    image: "assets/images/umi-fusion-headshot.jpg",
-    email: data.contact.email,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: data.contact.location,
-    },
-    knowsAbout: data.portfolioCategories.map((category) => category.category),
-    sameAs: data.socialProfiles.map((profile) => profile.url),
-  };
-
-  document.getElementById("person-schema").textContent = JSON.stringify(schema);
-};
-
 const renderPage = (data) => {
   renderMetrics(data);
   renderHeroCards(data);
@@ -1428,7 +1409,6 @@ const renderPage = (data) => {
   renderBackgroundCredits("education-list", data.education);
   renderAdditionalExperience(data);
   renderContact(data);
-  injectSchema(data);
 };
 
 const renderError = () => {

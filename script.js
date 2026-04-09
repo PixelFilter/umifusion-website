@@ -17,6 +17,77 @@ const getMobileCategoryLabel = (label) => label;
 const mobileNavBreakpoint = window.matchMedia("(max-width: 720px)");
 const responsiveHeroBreakpoint = window.matchMedia("(max-width: 980px)");
 
+const setupHorizontalScrollIndicator = (scroller) => {
+  if (!scroller || scroller.dataset.scrollIndicatorReady === "true") {
+    return;
+  }
+
+  const indicator = document.createElement("div");
+  indicator.className = "media-scrollbar-indicator";
+  indicator.setAttribute("aria-hidden", "true");
+
+  const track = document.createElement("div");
+  track.className = "media-scrollbar-indicator-track";
+
+  const thumb = document.createElement("div");
+  thumb.className = "media-scrollbar-indicator-thumb";
+
+  track.appendChild(thumb);
+  indicator.appendChild(track);
+  scroller.insertAdjacentElement("afterend", indicator);
+
+  let frameId = 0;
+
+  const syncIndicator = () => {
+    frameId = 0;
+
+    const maxScroll = Math.max(scroller.scrollWidth - scroller.clientWidth, 0);
+    const hasOverflow = maxScroll > 1;
+
+    indicator.hidden = !hasOverflow;
+
+    if (!hasOverflow) {
+      indicator.style.removeProperty("--scroll-indicator-size");
+      indicator.style.removeProperty("--scroll-indicator-offset");
+      return;
+    }
+
+    const thumbSizePercent = Math.min(
+      100,
+      Math.max((scroller.clientWidth / scroller.scrollWidth) * 100, 24)
+    );
+    const travelPercent = 100 - thumbSizePercent;
+    const progress = maxScroll > 0 ? scroller.scrollLeft / maxScroll : 0;
+
+    indicator.style.setProperty("--scroll-indicator-size", `${thumbSizePercent}%`);
+    indicator.style.setProperty(
+      "--scroll-indicator-offset",
+      `${travelPercent * progress}%`
+    );
+  };
+
+  const requestSync = () => {
+    if (frameId) {
+      return;
+    }
+
+    frameId = window.requestAnimationFrame(syncIndicator);
+  };
+
+  scroller.addEventListener("scroll", requestSync, { passive: true });
+  window.addEventListener("resize", requestSync, { passive: true });
+
+  if (typeof ResizeObserver === "function") {
+    const observer = new ResizeObserver(requestSync);
+    observer.observe(scroller);
+    Array.from(scroller.children).forEach((child) => observer.observe(child));
+  }
+
+  scroller.dataset.scrollIndicatorReady = "true";
+  requestSync();
+  window.setTimeout(requestSync, 250);
+};
+
 const initPrimaryNav = () => {
   const nav = document.getElementById("site-nav");
   const toggle = document.querySelector(".nav-toggle");
@@ -956,6 +1027,9 @@ const renderCredits = (data) => {
           embedsWrap.className = "media-embed-grid";
           combinedEmbeds.forEach((embed) => embedsWrap.appendChild(embed));
           links.appendChild(embedsWrap);
+          if (clone.classList.contains("credit-item-scroll-embeds")) {
+            setupHorizontalScrollIndicator(embedsWrap);
+          }
         }
       } else {
         meta.textContent =
@@ -980,6 +1054,9 @@ const renderCredits = (data) => {
             embedsWrap.className = "media-embed-grid";
             mediaEmbeds.forEach((embed) => embedsWrap.appendChild(embed.element));
             links.appendChild(embedsWrap);
+            if (clone.classList.contains("credit-item-scroll-embeds")) {
+              setupHorizontalScrollIndicator(embedsWrap);
+            }
           }
         }
       }

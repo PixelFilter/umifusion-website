@@ -800,6 +800,16 @@ const getSocialIcon = (service) => {
 };
 
 const projectVisuals = {
+  "DetectiveYOU": {
+    image:
+      "https://static.wixstatic.com/media/229b79_0e7bfa484b6a48d08cba8e23447774f7~mv2.png/v1/fill/w_1006,h_1200,al_c,q_90,enc_avif,quality_auto/229b79_0e7bfa484b6a48d08cba8e23447774f7~mv2.png",
+    eyebrow: "Project Artwork",
+  },
+  "Unexpected Departure: Eternal Port Valley": {
+    image:
+      "https://m.media-amazon.com/images/I/91OJ9B2ANPL._SL1500_.jpg",
+    eyebrow: "Audiobook Cover",
+  },
   "Tripvia Audio Tours": {
     image:
       "https://static.wixstatic.com/media/229b79_89221bcd8b13415dba62715ef36b70d3~mv2.jpg/v1/fill/w_980,h_653,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/229b79_89221bcd8b13415dba62715ef36b70d3~mv2.jpg",
@@ -854,7 +864,9 @@ const createProjectVisual = (item) => {
   card.className = "project-visual-card";
   if (
     item.title === "Big Misunderstood Wolf: Part 2" ||
-    item.title === "Tripvia Audio Tours"
+    item.title === "Tripvia Audio Tours" ||
+    item.title === "DetectiveYOU" ||
+    item.title === "Unexpected Departure: Eternal Port Valley"
   ) {
     card.classList.add("project-visual-card-square");
   }

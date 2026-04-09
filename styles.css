@@ -564,7 +564,7 @@ h3 {
 }
 
 .project-visual-card-square .project-visual-media img {
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .project-visual-meta {

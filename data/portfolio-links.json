@@ -127,40 +127,40 @@
           "description": "A short-form audio drama installment in the Rad(io) Shorts series, centered on the offbeat tale of a rattlesnake wrangler."
         },
         {
-          "title": "That Woman",
-          "year": 2022,
-          "role": "Olivia Tate",
-          "links": [
-            {
-              "label": "Project",
-              "url": "https://open.spotify.com/episode/0rJseZDq9SbOVLRrMDDAOe"
-            }
-          ],
-          "description": "A character-driven scripted audio project focused on Olivia Tate and the tensions surrounding her story."
-        },
-        {
           "title": "The Quentin Sanders Tapes",
           "year": 2022,
           "role": "Dorothy Conroy",
           "links": [
             {
-              "label": "Full Film",
+              "label": "Analog Horror",
               "url": "https://www.youtube.com/watch?v=bI0EYgLnVcw"
             }
           ],
           "description": "A suspense-driven mystery presented through recorded tapes and fragmented testimony."
         },
         {
-          "title": "Out of Place Podcast",
+          "title": "The Denault Tapes",
           "year": 2022,
-          "role": "Child",
+          "role": "Lucie Denault",
           "links": [
             {
-              "label": "Project",
-              "url": "https://www.buzzsprout.com/835705/10472619-when-couples-argue"
+              "label": "Episode 1",
+              "url": "https://www.youtube.com/watch?v=4OSbJTZyxhs&rco=1"
             }
           ],
-          "description": "An anthology-style audio drama podcast that drops ordinary people into eerie, reality-bending encounters."
+          "description": "A mystery-driven audio drama about secrets, loss, and unraveling events."
+        },
+        {
+          "title": "Purple Ran by That Love Podcast",
+          "year": 2022,
+          "role": "Oliva Tate",
+          "links": [
+            {
+              "label": "Complete Series",
+              "url": "https://open.spotify.com/episode/2kSHzscelY24WJfJMB7Bpc?si=8b7a672a931045c0"
+            }
+          ],
+          "description": "A scripted audio rom-com about heartbreak, healing, and second chances."
         }
       ]
     },
@@ -180,18 +180,6 @@
           "description": "A sci-fi film set after an alien invasion, following Mason Redgrave and his virtual companion Riley-B12 through a devastated world."
         },
         {
-          "title": "The Bunker",
-          "year": 2022,
-          "role": "Chloe",
-          "links": [
-            {
-              "label": "Full Film",
-              "url": "https://youtu.be/QZc2mcF8r_0"
-            }
-          ],
-          "description": "A dramatic short film set around life inside a bunker, with Umi voicing Chloe."
-        },
-        {
           "title": "Headstone of Solitude",
           "year": 2023,
           "role": "Amber/Woman",
@@ -202,6 +190,18 @@
             }
           ],
           "description": "A moody supernatural short film built around grief, isolation, and a haunting presence."
+        },
+        {
+          "title": "The Bunker",
+          "year": 2022,
+          "role": "Chloe",
+          "links": [
+            {
+              "label": "Full Film",
+              "url": "https://youtu.be/QZc2mcF8r_0"
+            }
+          ],
+          "description": "A dramatic short film set around life inside a bunker, with Umi voicing Chloe."
         }
       ]
     },
@@ -271,12 +271,24 @@
       "category": "Games / Mobile Experiences",
       "items": [
         {
+          "title": "DetectiveYOU",
+          "year": 2023,
+          "role": "Mel",
+          "links": [
+            {
+              "label": "Interactive Mobile App",
+              "url": "https://www.iamhearo.com/m4m-detective-you"
+            }
+          ],
+          "description": "A self-guided, interactive audio murder mystery adventure across your city."
+        },
+        {
           "title": "Tripvia Audio Tours",
           "year": 2022,
           "role": "Mary Schaefer Warren",
           "links": [
             {
-              "label": "Mobile App",
+              "label": "Interactive Mobile App",
               "url": "https://www.tripvia.tours"
             }
           ],
@@ -402,6 +414,35 @@
             }
           ],
           "description": "A voice-driven fan adaptation based on the meta-horror visual novel world of Doki Doki Literature Club."
+        },
+        {
+          "title": "Backfire Webtoon Fandub",
+          "year": 2022,
+          "role": "Demijyn 1",
+          "links": [
+            {
+              "label": "Full Video",
+              "url": "https://youtu.be/DdXqiCxDbpc?si=vvnZ7RQVI88TWFy8"
+            }
+          ],
+          "description": "A fandub adaptation of the Webtoon fantasy series, Backfire."
+        }
+      ]
+    },
+    {
+      "category": "Audiobooks",
+      "items": [
+        {
+          "title": "Unexpected Departure: Eternal Port Valley",
+          "year": 2024,
+          "role": "Narrator",
+          "links": [
+            {
+              "label": "Book 1",
+              "url": "https://www.amazon.com/Unexpected-Departure-Eternal-Port-Valley/dp/B0CZM2KKZ8"
+            }
+          ],
+          "description": "An LGBTQ+ romance about Riley returning home and learning to love herself."
         }
       ]
     },
@@ -409,29 +450,9 @@
       "category": "Upcoming Projects",
       "items": [
         {
-          "title": "Unexpected Departure by Shannon O'Connor",
-          "role": "Narrator",
-          "description": "Audible audiobook"
-        },
-        {
-          "title": "DetectiveYOU",
-          "role": "Mel",
-          "description": "Story-based app"
-        },
-        {
-          "title": "The Denault Tapes",
-          "role": "Lucie Denault",
-          "description": "Audio drama"
-        },
-        {
-          "title": "Toca Life Stories Continued!",
-          "role": "Narrator",
-          "description": "Fan dub"
-        },
-        {
-          "title": "Delicious In Dungeon",
-          "role": "Izutsumi",
-          "description": "Comic fandub"
+          "title": "Cthulhu: The Awakening",
+          "role": "Olivia",
+          "description": "Narrative Adventure"
         }
       ]
     }

@@ -674,6 +674,7 @@ h3 {
 }
 
 .media-scrollbar-indicator-track {
+  position: relative;
   width: 100%;
   height: 100%;
   border-radius: 999px;
@@ -682,13 +683,22 @@ h3 {
 }
 
 .media-scrollbar-indicator-thumb {
+  position: absolute;
+  top: 0;
+  left: var(--scroll-indicator-offset, 0%);
   width: var(--scroll-indicator-size, 30%);
   min-width: 4.5rem;
   height: 100%;
   border-radius: inherit;
   background: var(--scrollbar-thumb);
-  transform: translateX(var(--scroll-indicator-offset, 0%));
-  transition: transform 140ms ease-out, width 140ms ease-out;
+  touch-action: none;
+  cursor: grab;
+  transition: left 140ms ease-out, width 140ms ease-out;
+}
+
+.media-scrollbar-indicator.is-dragging .media-scrollbar-indicator-thumb {
+  cursor: grabbing;
+  transition: none;
 }
 
 .spotify-embed-card {
@@ -1210,7 +1220,7 @@ h3 {
     width: calc(100% + (var(--credit-group-padding) * 2));
     height: 0.95rem;
     margin:
-      0.2rem
+      0.6rem
       calc(-1 * var(--credit-group-padding))
       0;
     padding: 0 calc(var(--credit-group-padding) + var(--credit-scroll-item-inset-mobile));

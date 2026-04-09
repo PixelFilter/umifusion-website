@@ -37,6 +37,29 @@ const setupHorizontalScrollIndicator = (scroller) => {
   scroller.insertAdjacentElement("afterend", indicator);
 
   let frameId = 0;
+  let isDragging = false;
+  let activePointerId = null;
+  let dragOffsetX = 0;
+
+  const syncScrollFromPointer = (clientX) => {
+    const trackRect = track.getBoundingClientRect();
+    const thumbRect = thumb.getBoundingClientRect();
+    const maxScroll = Math.max(scroller.scrollWidth - scroller.clientWidth, 0);
+    const maxThumbTravel = Math.max(trackRect.width - thumbRect.width, 0);
+
+    if (maxScroll <= 0 || maxThumbTravel <= 0) {
+      scroller.scrollLeft = 0;
+      return;
+    }
+
+    const nextThumbLeft = Math.min(
+      Math.max(clientX - trackRect.left - dragOffsetX, 0),
+      maxThumbTravel
+    );
+    const progress = nextThumbLeft / maxThumbTravel;
+
+    scroller.scrollLeft = progress * maxScroll;
+  };
 
   const syncIndicator = () => {
     frameId = 0;
@@ -73,6 +96,42 @@ const setupHorizontalScrollIndicator = (scroller) => {
 
     frameId = window.requestAnimationFrame(syncIndicator);
   };
+
+  thumb.addEventListener("pointerdown", (event) => {
+    if (!indicator.hidden) {
+      isDragging = true;
+      activePointerId = event.pointerId;
+      dragOffsetX = event.clientX - thumb.getBoundingClientRect().left;
+      indicator.classList.add("is-dragging");
+      thumb.setPointerCapture(event.pointerId);
+      event.preventDefault();
+    }
+  });
+
+  thumb.addEventListener("pointermove", (event) => {
+    if (!isDragging || event.pointerId !== activePointerId) {
+      return;
+    }
+
+    syncScrollFromPointer(event.clientX);
+  });
+
+  const stopDragging = (event) => {
+    if (!isDragging || event.pointerId !== activePointerId) {
+      return;
+    }
+
+    isDragging = false;
+    activePointerId = null;
+    indicator.classList.remove("is-dragging");
+
+    if (thumb.hasPointerCapture(event.pointerId)) {
+      thumb.releasePointerCapture(event.pointerId);
+    }
+  };
+
+  thumb.addEventListener("pointerup", stopDragging);
+  thumb.addEventListener("pointercancel", stopDragging);
 
   scroller.addEventListener("scroll", requestSync, { passive: true });
   window.addEventListener("resize", requestSync, { passive: true });
